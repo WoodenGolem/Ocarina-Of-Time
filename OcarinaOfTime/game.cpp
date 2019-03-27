@@ -61,47 +61,12 @@ Game::~Game()
 	glfwTerminate();
 }
 
-GLvoid Game::loadResources()
-{
-	this->shader_programs.push_back(loadShader("resources/shader/vertex_shader.vert", "resources/shader/fragment_shader.frag"));
 
-	this->meshes.push_back(new Mesh("resources/meshes/cube.obj"));
-	this->meshes.push_back(new Mesh("resources/meshes/terrain.obj"));
-
-	this->textures.push_back(new Texture({ loadTexture("resources/textures/dirt.bmp"),
-										   GLuint(glGetUniformLocation(this->shader_programs[0], "TextureSampler")) }));
-	
-	/*
-	// Standard Texture Filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	*/
-	
-	// ... nice trilinear filtering ...
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	// ... which requires mipmaps. Generate them automatically.
-	glGenerateMipmap(GL_TEXTURE_2D);
-	
-}
 
 GLvoid Game::mainLoop()
 {
-	// LOADING
-	this->loadResources();
-
-	// LOAD ENTITIES
-	Entity cube = Entity(this->textures[0], this->meshes[1]);
-
-	// CAMERA
-	Camera camera;
-
-	// LIGHT
-	GLuint light_ID = glGetUniformLocation(shader_programs[0], "LightPosition_worldspace");
-	
-
+	Scene scene;
+	scene.test();
 	// GENERAL SETTINGS
 	glClearColor(1.0f, 0.75f, 0.0f, 0.0f);
 	// Enable depth test
@@ -109,6 +74,7 @@ GLvoid Game::mainLoop()
 	glDepthFunc(GL_LESS);
 	// Cull faces with normals away from camera
 	glEnable(GL_CULL_FACE);
+	
 
 	// MAIN LOOP
 	GLdouble fps_limit_timer;
@@ -120,19 +86,17 @@ GLvoid Game::mainLoop()
 			std::cout << "FPS: " << fps << std::endl;
 			fps = 0;
 			timer = glfwGetTime();
+			
 		}
 		else {
 			fps++;
 		}
-
 		fps_limit_timer = glfwGetTime();
-		camera.computeInputs(this->window);
-		glUniform3f(light_ID, 0, 10, 0);
+
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		cube.draw(shader_programs[0], camera);
-
-		glUseProgram(this->shader_programs[0]);
+		scene.computeInputs(this->window);
+		scene.draw();
 
 		glfwSwapBuffers(this->window);
 		glfwPollEvents();

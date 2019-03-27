@@ -57,6 +57,15 @@
     <ClCompile Include="Terrain.cpp">
       <Filter>source files</Filter>
     </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="resource_manager.cpp">
+      <Filter>source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -86,12 +95,24 @@
     <ClInclude Include="terrain.h">
       <Filter>header files</Filter>
     </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource_manager.h">
+      <Filter>header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\common\triforce.png">
       <Filter>resources\common</Filter>
     </Image>
     <Image Include="resources\textures\dirt.bmp">
+      <Filter>resources\textures</Filter>
+    </Image>
+    <Image Include="resources\textures\red.bmp">
       <Filter>resources\textures</Filter>
     </Image>
   </ItemGroup>
@@ -108,6 +129,21 @@
       <Filter>resources\meshes</Filter>
     </Object>
     <Object Include="resources\meshes\terrain.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\suzanne.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\cube1x1.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\flat.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\liteterrain.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\player.obj">
       <Filter>resources\meshes</Filter>
     </Object>
   </ItemGroup>

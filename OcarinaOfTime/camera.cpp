@@ -5,9 +5,9 @@
 Camera::Camera(GLdouble p_fov)
 {
 	this->fov = p_fov;
-	this->pos = { 4, 3, 3 };
-	this->dir = { 0, 0, -1 };
-	this->up  = { 0, 1, 0 };
+	this->pos = { 0, 13, 0 };
+	this->dir = { 0, -1, 0 };
+	this->up  = { 0, 0, -1 };
 
 	this->aspectRatio = 4 / 3;
 	this->near_plane = 0.1;
@@ -54,7 +54,7 @@ GLvoid Camera::computeInputs(GLFWwindow* window)
 	glm::vec3 rightVector = glm::vec3(
 		sin(this->horizontalAngle - 3.14f / 2.0f),
 		0,
-		cos(horizontalAngle - 3.14f / 2.0f)
+		cos(this->horizontalAngle - 3.14f / 2.0f)
 	);
 
 	this->up = glm::cross(rightVector, dir);

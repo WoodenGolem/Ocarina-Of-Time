@@ -113,10 +113,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Libraries\OBJ_Loader;$(SolutionDir)\Libraries\soil;$(SolutionDir)\Libraries\glm-0.9.9.3\glm\glm;$(SolutionDir)\Libraries\glfw-3.2.1.bin.WIN64\glfw-3.2.1.bin.WIN64\include;$(SolutionDir)\Libraries\glew-2.1.0-win32\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\soil;$(SolutionDir)\Libraries\glfw-3.2.1.bin.WIN64\glfw-3.2.1.bin.WIN64\lib-vc2015;$(SolutionDir)\Libraries\glew-2.1.0-win32\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -126,6 +129,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="mesh_loader.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="resource_manager.cpp" />
+    <ClCompile Include="scene.cpp" />
     <ClCompile Include="shader_loader.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="texture_loader.cpp" />
@@ -137,6 +143,9 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="mesh_loader.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="resource_manager.h" />
+    <ClInclude Include="scene.h" />
     <ClInclude Include="shader_loader.h" />
     <ClInclude Include="terrain.h" />
     <ClInclude Include="texture_loader.h" />
@@ -144,6 +153,7 @@
   <ItemGroup>
     <Image Include="resources\common\triforce.png" />
     <Image Include="resources\textures\dirt.bmp" />
+    <Image Include="resources\textures\red.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shader\fragment_shader.frag" />
@@ -151,10 +161,32 @@
   </ItemGroup>
   <ItemGroup>
     <Object Include="resources\meshes\cube.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
+    </Object>
+    <Object Include="resources\meshes\cube1x1.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
+    </Object>
+    <Object Include="resources\meshes\flat.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
+    </Object>
+    <Object Include="resources\meshes\liteterrain.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
+    </Object>
+    <Object Include="resources\meshes\player.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
+    </Object>
+    <Object Include="resources\meshes\suzanne.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
     </Object>
     <Object Include="resources\meshes\terrain.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
     </Object>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

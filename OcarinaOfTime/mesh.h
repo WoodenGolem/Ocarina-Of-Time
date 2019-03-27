@@ -10,7 +10,11 @@ class Mesh
 {
 public:
 	Mesh(std::string mesh_file_path);
+	~Mesh();
 	GLvoid draw();
+	GLuint vertexCount();
+	std::vector<glm::vec3> get_vertices();
+	BoundingBox get_boundingBox();
 
 private:
 	GLboolean mesh_is_loaded;
@@ -21,6 +25,8 @@ private:
 
 	std::vector<glm::vec3> vertices, normals;
 	std::vector<glm::vec2> uvs;
+
+	BoundingBox boundingBox;
 };
 
 

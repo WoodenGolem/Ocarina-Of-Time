@@ -15,9 +15,17 @@ public:
 	Entity(Texture* p_texture,
 		   Mesh* p_mesh);
 
-	GLvoid draw(GLuint shader_program, Camera& camera);
+	GLvoid draw(GLuint shader_program, Camera* camera);
+	GLvoid scale(GLdouble x, GLdouble y, GLdouble z);
+	GLvoid scale(glm::vec3 xyz);
+	GLvoid rotate(GLfloat angle, GLdouble axis_x, GLdouble axis_y, GLdouble axis_z);
+	GLvoid rotate(GLfloat angle, glm::vec3 axis);
+	GLvoid translate(GLdouble x, GLdouble y, GLdouble z);
+	GLvoid translate(glm::vec3 xyz);
 
-private:
+	BoundingBox calcBoundingBox();
+
+protected:
 	Mesh* mesh;
 	Texture* texture;
 

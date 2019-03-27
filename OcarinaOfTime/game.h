@@ -6,10 +6,7 @@
 #include <vector>
 
 #include "declarations.h"
-#include "mesh.h"
-#include "shader_loader.h"
-#include "texture_loader.h"
-#include "entity.h"
+#include "scene.h"
 
 
 class Game
@@ -20,17 +17,11 @@ public:
 		 GLboolean fullscreen = GL_FALSE);
 	~Game();
 
-	// Experimental
+
 	GLvoid mainLoop();
 
 private:
 	GLFWwindow* window;
-
-	std::vector<GLuint> shader_programs;
-	std::vector<Texture*> textures;
-	std::vector<Mesh*> meshes;
-
-	GLvoid loadResources();
 };
 
 

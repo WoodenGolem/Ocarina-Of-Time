@@ -1,26 +1,23 @@
 #ifndef TERRAIN_H
 #define TERRAIN_H
 
-#include "declarations.h"
-#include "mesh.h"
-#include "camera.h"
+#include "entity.h"
 
-class Terrain
+class Terrain : public Entity
 {
 public:
-	Terrain(Texture* p_texture,
-			Mesh* p_mesh);
+	Terrain(Texture* p_texture, Mesh* p_mesh);
+	GLvoid scale(GLdouble edge, GLdouble height);
+	GLvoid scale(glm::vec2 edge_height);
 
-	GLvoid draw(GLuint shader_program, Camera& camera);
+	GLdouble** get_terrain_height() const;
+	GLuint get_edge_vertices() const;
+	GLuint get_size() const;
 
 private:
-	Mesh* mesh;
-	Texture* texture;
-
-	glm::vec3 scaling;
-	glm::vec3 tranlation;
-
-	glm::mat4 modelMatrix();
+	GLdouble** terrain_height;
+	GLuint edge_vertices;
+	GLuint size;
 };
 
 #endif // !TERRAIN_H
