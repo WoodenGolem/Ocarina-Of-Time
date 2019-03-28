@@ -1,30 +1,159 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Quelldateien">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="resources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Headerdateien">
+    <Filter Include="resources\common">
+      <UniqueIdentifier>{15be5ece-8900-4416-9370-c8dd54876a4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="loader functions">
+      <UniqueIdentifier>{b245d7ea-f101-4f6b-9d69-7a4983cca767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources\shader">
+      <UniqueIdentifier>{7e50e61e-3fb3-497d-bc0b-3e876fca85df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources\meshes">
+      <UniqueIdentifier>{5d1330ea-7084-45dc-a6c4-275d78b84bb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources\textures">
+      <UniqueIdentifier>{9d87f4e9-106c-4b1a-b9e8-5251d485754e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="header files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Ressourcendateien">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="source files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>source files</Filter>
     </ClCompile>
     <ClCompile Include="game.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="shader_loader.cpp">
+      <Filter>loader functions</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh_loader.cpp">
+      <Filter>loader functions</Filter>
+    </ClCompile>
+    <ClCompile Include="texture_loader.cpp">
+      <Filter>loader functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="resource_manager.cpp">
+      <Filter>source files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>header files</Filter>
     </ClInclude>
+    <ClInclude Include="declarations.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="shader_loader.h">
+      <Filter>loader functions</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh_loader.h">
+      <Filter>loader functions</Filter>
+    </ClInclude>
+    <ClInclude Include="texture_loader.h">
+      <Filter>loader functions</Filter>
+    </ClInclude>
+    <ClInclude Include="terrain.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource_manager.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\common\triforce.png">
+      <Filter>resources\common</Filter>
+    </Image>
+    <Image Include="resources\textures\dirt.bmp">
+      <Filter>resources\textures</Filter>
+    </Image>
+    <Image Include="resources\textures\red.bmp">
+      <Filter>resources\textures</Filter>
+    </Image>
+    <Image Include="resources\textures\green.bmp">
+      <Filter>resources\textures</Filter>
+    </Image>
+    <Image Include="resources\textures\player.bmp">
+      <Filter>resources\textures</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shader\fragment_shader.frag">
+      <Filter>resources\shader</Filter>
+    </None>
+    <None Include="resources\shader\vertex_shader.vert">
+      <Filter>resources\shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="resources\meshes\cube.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\terrain.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\suzanne.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\cube1x1.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\flat.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\liteterrain.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\player.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\link.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
   </ItemGroup>
 </Project>

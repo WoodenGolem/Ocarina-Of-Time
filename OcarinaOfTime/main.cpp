@@ -1,15 +1,11 @@
-#include <Windows.h>
-#include <iostream>
+#include "declarations.h"
+#include "game.h"
+
 
 int main()
 {
-	using namespace std;
-
-	// Settings of console window
-	SetWindowPos(GetConsoleWindow(), HWND_TOPMOST, 0, 85, 500, 900, 0);
-	SetConsoleTitle("The Legend of Zelda: Ocarina of Time");
-
-	getchar();
+	Game game;
+	game.mainLoop();
 
 	return 0;
 }
