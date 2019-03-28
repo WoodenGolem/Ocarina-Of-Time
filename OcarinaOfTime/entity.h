@@ -15,7 +15,10 @@ public:
 	Entity(Texture* p_texture,
 		   Mesh* p_mesh);
 
+	// Rendering
 	GLvoid draw(GLuint shader_program, Camera* camera);
+
+	// Transformation
 	GLvoid scale(GLdouble x, GLdouble y, GLdouble z);
 	GLvoid scale(glm::vec3 xyz);
 	GLvoid rotate(GLfloat angle, GLdouble axis_x, GLdouble axis_y, GLdouble axis_z);
@@ -23,17 +26,27 @@ public:
 	GLvoid translate(GLdouble x, GLdouble y, GLdouble z);
 	GLvoid translate(glm::vec3 xyz);
 
+	// Physics
 	BoundingBox calcBoundingBox();
+	GLvoid applyForce(glm::vec3 force);
+	GLvoid update();
+
 
 protected:
+	// Rendering
 	Mesh* mesh;
 	Texture* texture;
+	glm::mat4 modelMatrix();
 
+	// Transformation
 	glm::mat4 scaling;
 	glm::mat4 rotation;
 	glm::mat4 translation;
 
-	glm::mat4 modelMatrix();
+	// Physics
+	std::vector<glm::vec3> forces;
+	glm::vec3 velocity;
+	GLdouble mass;
 };
 
 

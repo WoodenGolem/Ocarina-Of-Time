@@ -8,9 +8,6 @@
     <Filter Include="resources\common">
       <UniqueIdentifier>{15be5ece-8900-4416-9370-c8dd54876a4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="loader functions">
-      <UniqueIdentifier>{b245d7ea-f101-4f6b-9d69-7a4983cca767}</UniqueIdentifier>
-    </Filter>
     <Filter Include="resources\shader">
       <UniqueIdentifier>{7e50e61e-3fb3-497d-bc0b-3e876fca85df}</UniqueIdentifier>
     </Filter>
@@ -45,18 +42,6 @@
     <ClCompile Include="mesh.cpp">
       <Filter>source files</Filter>
     </ClCompile>
-    <ClCompile Include="shader_loader.cpp">
-      <Filter>loader functions</Filter>
-    </ClCompile>
-    <ClCompile Include="mesh_loader.cpp">
-      <Filter>loader functions</Filter>
-    </ClCompile>
-    <ClCompile Include="texture_loader.cpp">
-      <Filter>loader functions</Filter>
-    </ClCompile>
-    <ClCompile Include="Terrain.cpp">
-      <Filter>source files</Filter>
-    </ClCompile>
     <ClCompile Include="scene.cpp">
       <Filter>source files</Filter>
     </ClCompile>
@@ -64,6 +49,9 @@
       <Filter>source files</Filter>
     </ClCompile>
     <ClCompile Include="resource_manager.cpp">
+      <Filter>source files</Filter>
+    </ClCompile>
+    <ClCompile Include="entity_manager.cpp">
       <Filter>source files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,18 +71,6 @@
     <ClInclude Include="mesh.h">
       <Filter>header files</Filter>
     </ClInclude>
-    <ClInclude Include="shader_loader.h">
-      <Filter>loader functions</Filter>
-    </ClInclude>
-    <ClInclude Include="mesh_loader.h">
-      <Filter>loader functions</Filter>
-    </ClInclude>
-    <ClInclude Include="texture_loader.h">
-      <Filter>loader functions</Filter>
-    </ClInclude>
-    <ClInclude Include="terrain.h">
-      <Filter>header files</Filter>
-    </ClInclude>
     <ClInclude Include="scene.h">
       <Filter>header files</Filter>
     </ClInclude>
@@ -102,6 +78,9 @@
       <Filter>header files</Filter>
     </ClInclude>
     <ClInclude Include="resource_manager.h">
+      <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="entity_manager.h">
       <Filter>header files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -119,6 +98,9 @@
       <Filter>resources\textures</Filter>
     </Image>
     <Image Include="resources\textures\player.bmp">
+      <Filter>resources\textures</Filter>
+    </Image>
+    <Image Include="resources\textures\link.bmp">
       <Filter>resources\textures</Filter>
     </Image>
   </ItemGroup>

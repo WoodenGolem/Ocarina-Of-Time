@@ -14,7 +14,7 @@ Camera::Camera(GLdouble p_fov)
 */	
 
 	// FRONT
-	this->pos = { 0, 2, 20 };
+	this->pos = { 0, 2, 5 };
 	this->dir = { 0, 0, -1 };
 	this->up = { 0, 1, 0 };
 
@@ -55,6 +55,9 @@ GLvoid Camera::computeInputs(GLFWwindow* window)
 	this->horizontalAngle += this->mouseSpeed * GLfloat(width / 2 - xpos);
 	this->verticalAngle += this->mouseSpeed * GLfloat(height / 2 - ypos);
 
+	if (this->verticalAngle > 1.5) this->verticalAngle = 1.5;
+	else if (this->verticalAngle < -1.5) this->verticalAngle = -1.5;
+
 	this->dir = glm::vec3(
 		cos(this->verticalAngle) * sin(this->horizontalAngle),
 		sin(this->verticalAngle),
@@ -71,20 +74,28 @@ GLvoid Camera::computeInputs(GLFWwindow* window)
 
 
 	// Move forward
-	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-		this->pos += this->dir * deltaTime * speed;
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+		this->pos += glm::normalize(glm::vec3(this->dir.x, 0, this->dir.z)) * deltaTime * speed;
 	}
 	// Move backward
-	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-		this->pos -= this->dir * deltaTime * speed;
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+		this->pos -= glm::normalize(glm::vec3(this->dir.x, 0, this->dir.z)) * deltaTime * speed;
 	}
 	// Strafe right
-	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
 		this->pos += rightVector * deltaTime * speed;
 	}
 	// Strafe left
-	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
 		this->pos -= rightVector * deltaTime * speed;
+	}
+	// Move Up
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+		this->pos += glm::vec3(0, 1, 0) * deltaTime * speed;
+	}
+	// Move down
+	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+		this->pos += glm::vec3(0, -1, 0) * deltaTime *speed;
 	}
 
 	lastTime = currentTime;

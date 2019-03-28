@@ -4,15 +4,21 @@
 Entity::Entity(Texture* p_texture,
 			   Mesh* p_mesh)
 {
+	// Rendering
 	this->texture = p_texture;
 	this->mesh = p_mesh;
 
+	// Transforming
 	this->scaling	  = glm::scale(glm::vec3(1.0, 1.0, 1.0));
 	this->rotation	  = glm::rotate(glm::radians(0.0f), glm::vec3(0.0, 1.0, 0.0));
 	this->translation = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.0, 0.0));
+
+	// Physics
+	this->mass = 1;
 }
 
 
+// Rendering
 GLvoid Entity::draw(GLuint shader_program, Camera* camera)
 {
 	// Not a Lightsource
@@ -35,7 +41,12 @@ GLvoid Entity::draw(GLuint shader_program, Camera* camera)
 
 	this->mesh->draw();
 }
+glm::mat4 Entity::modelMatrix()
+{
+	return this->translation * this->rotation * this->scaling;
+}
 
+// Transforming
 GLvoid Entity::scale(GLdouble x, GLdouble y, GLdouble z)
 {
 	this->scaling = glm::scale(glm::vec3(x, y, z));
@@ -61,6 +72,7 @@ GLvoid Entity::translate(glm::vec3 xyz)
 	this->translation = glm::translate(glm::mat4(1.0), xyz);
 }
 
+// Physics
 BoundingBox Entity::calcBoundingBox()
 {
 	BoundingBox boundingBox = this->mesh->get_boundingBox();
@@ -79,8 +91,11 @@ BoundingBox Entity::calcBoundingBox()
 
 	return boundingBox;
 }
-
-glm::mat4 Entity::modelMatrix()
+GLvoid Entity::applyForce(glm::vec3 force)
 {
-	return this->translation * this->rotation * this->scaling;
+	this->forces.push_back(force);
 }
+GLvoid Entity::update()
+{
+}
+

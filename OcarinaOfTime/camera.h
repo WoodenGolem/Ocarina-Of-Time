@@ -24,9 +24,9 @@ private:
 	GLdouble near_plane;
 	GLdouble far_plane;
 
-	GLfloat horizontalAngle = 3.14f;
+	GLfloat horizontalAngle = 90.0f;
 	GLfloat verticalAngle = 0.0f;
-	GLfloat speed = 6.0f; // units / second
+	GLfloat speed = 7.5f; // units / second
 	GLfloat mouseSpeed = 0.005f;
 };
 

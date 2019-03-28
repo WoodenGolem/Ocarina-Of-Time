@@ -3,9 +3,9 @@
 
 #include <vector>
 #include "camera.h"
-#include "terrain.h"
 #include "player.h"
 #include "resource_manager.h"
+#include "entity_manager.h"
 
 
 class Scene
@@ -17,12 +17,10 @@ public:
 
 private:
 	ResourceManager* resources;
+	EntityManager* entities;
 	Camera* camera;
-	Terrain* terrain;
 	Player* player;
 	GLuint light_source;
-
-	std::vector<Entity*> entities;
 };
 
 #endif // !SCENE_H
