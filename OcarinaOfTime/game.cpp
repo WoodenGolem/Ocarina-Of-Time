@@ -4,7 +4,7 @@
 Game::Game(GLuint width, GLuint height, GLboolean fullscreen)
 {
 	// Settings of console window
-	SetWindowPos(GetConsoleWindow(), HWND_TOP, 0, 85, 500, 900, 0);
+	SetWindowPos(GetConsoleWindow(), HWND_TOP, 0, 85, 500, 500, 0);
 	SetConsoleTitle("The Legend of Zelda: Ocarina of Time Console");
 
 	// Initializing GLFW
@@ -66,7 +66,6 @@ Game::~Game()
 GLvoid Game::mainLoop()
 {
 	Scene scene;
-	scene.test();
 	// GENERAL SETTINGS
 	glClearColor(1.0f, 0.75f, 0.0f, 0.0f);
 	// Enable depth test
@@ -102,7 +101,7 @@ GLvoid Game::mainLoop()
 		glfwPollEvents();
 
 		// FPS LIMITER
-		Sleep(1000 / 120 - (glfwGetTime() - fps_limit_timer));
+		//Sleep(1000 / 120 - (glfwGetTime() - fps_limit_timer));
 
 	} while (glfwGetKey(this->window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 			 glfwWindowShouldClose(this->window) == 0);

@@ -153,6 +153,8 @@
   <ItemGroup>
     <Image Include="resources\common\triforce.png" />
     <Image Include="resources\textures\dirt.bmp" />
+    <Image Include="resources\textures\green.bmp" />
+    <Image Include="resources\textures\player.bmp" />
     <Image Include="resources\textures\red.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +173,10 @@
     <Object Include="resources\meshes\flat.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
+    </Object>
+    <Object Include="resources\meshes\link.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Object>
     <Object Include="resources\meshes\liteterrain.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>

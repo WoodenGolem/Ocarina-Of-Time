@@ -57,7 +57,7 @@ GLuint Terrain::get_edge_vertices() const
 	return this->edge_vertices;
 }
 
-GLuint Terrain::get_size() const
+GLdouble Terrain::get_size() const
 {
 	return this->size;
 }

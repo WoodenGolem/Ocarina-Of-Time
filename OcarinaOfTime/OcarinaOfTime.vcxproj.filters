@@ -115,6 +115,12 @@
     <Image Include="resources\textures\red.bmp">
       <Filter>resources\textures</Filter>
     </Image>
+    <Image Include="resources\textures\green.bmp">
+      <Filter>resources\textures</Filter>
+    </Image>
+    <Image Include="resources\textures\player.bmp">
+      <Filter>resources\textures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shader\fragment_shader.frag">
@@ -144,6 +150,9 @@
       <Filter>resources\meshes</Filter>
     </Object>
     <Object Include="resources\meshes\player.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\link.obj">
       <Filter>resources\meshes</Filter>
     </Object>
   </ItemGroup>

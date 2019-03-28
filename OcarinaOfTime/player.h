@@ -14,7 +14,8 @@ public:
 
 	GLvoid computeInputs(GLFWwindow* window, std::vector<Entity*> entities, Terrain* terrain);
 	GLvoid terrainCollision(Terrain* terrain);
-	bool collisionTest(Entity* entity);
+	bool broadCollisionTest(Entity* entity);
+	bool nearCollisionTest(Entity* entity);
 
 private:
 	glm::vec3 pos;

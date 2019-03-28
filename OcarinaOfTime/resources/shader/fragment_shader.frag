@@ -22,7 +22,7 @@ void main()
 	// Light emission properties
 	// You probably want to put them as uniforms
 	vec3 LightColor = vec3(1, 1, 1);
-	float LightPower = 50.0f;
+	float LightPower = 1750.0f;
 
 	// Material properties
 	vec3 MaterialDiffuseColor = texture( TextureSampler, UV ).rgb;
@@ -55,15 +55,15 @@ void main()
 	}
 	else
 	{
-		color.rgb =		
+		color.rgb =
 			// Ambient: simulates indirect lighting
-			MaterialAmbientColor + 
+			MaterialAmbientColor +
 
 			// Diffuse: "color" of the object
-			MaterialDiffuseColor * LightColor * LightPower * cosTheta / (distance*distance) +
+			MaterialDiffuseColor * LightColor * LightPower * cosTheta / (distance*distance);
 		
 			// Specular: reflective highlight, like a mirror
-			MaterialSpecularColor * LightColor * (LightPower/2) * pow(cosAlpha, 5) / (distance*distance);
+			//MaterialSpecularColor * LightColor * (LightPower/2) * pow(cosAlpha, 5) / (distance*distance);
 	}
 	color.a = 1;
 }

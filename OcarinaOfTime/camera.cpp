@@ -5,9 +5,19 @@
 Camera::Camera(GLdouble p_fov)
 {
 	this->fov = p_fov;
+
+	// Vogelperspektive 
+/*	
 	this->pos = { 0, 13, 0 };
 	this->dir = { 0, -1, 0 };
 	this->up  = { 0, 0, -1 };
+*/	
+
+	// FRONT
+	this->pos = { 0, 2, 20 };
+	this->dir = { 0, 0, -1 };
+	this->up = { 0, 1, 0 };
+
 
 	this->aspectRatio = 4 / 3;
 	this->near_plane = 0.1;
@@ -61,19 +71,19 @@ GLvoid Camera::computeInputs(GLFWwindow* window)
 
 
 	// Move forward
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
 		this->pos += this->dir * deltaTime * speed;
 	}
 	// Move backward
-	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
 		this->pos -= this->dir * deltaTime * speed;
 	}
 	// Strafe right
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
 		this->pos += rightVector * deltaTime * speed;
 	}
 	// Strafe left
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
 		this->pos -= rightVector * deltaTime * speed;
 	}
 

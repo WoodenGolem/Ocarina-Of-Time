@@ -14,7 +14,6 @@ public:
 	Scene();
 	GLvoid computeInputs(GLFWwindow* window);
 	GLvoid draw();
-	GLvoid test();
 
 private:
 	ResourceManager* resources;

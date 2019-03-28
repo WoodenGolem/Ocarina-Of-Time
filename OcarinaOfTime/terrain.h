@@ -12,12 +12,12 @@ public:
 
 	GLdouble** get_terrain_height() const;
 	GLuint get_edge_vertices() const;
-	GLuint get_size() const;
+	GLdouble get_size() const;
 
 private:
 	GLdouble** terrain_height;
 	GLuint edge_vertices;
-	GLuint size;
+	GLdouble size;
 };
 
 #endif // !TERRAIN_H
