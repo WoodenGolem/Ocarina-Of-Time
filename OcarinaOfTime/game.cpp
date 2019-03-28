@@ -101,7 +101,7 @@ GLvoid Game::mainLoop()
 		glfwPollEvents();
 
 		// FPS LIMITER
-		//Sleep(1000 / 120 - (glfwGetTime() - fps_limit_timer));
+		Sleep(1000 / 120 - (glfwGetTime() - fps_limit_timer));
 
 	} while (glfwGetKey(this->window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 			 glfwWindowShouldClose(this->window) == 0);
