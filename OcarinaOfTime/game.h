@@ -2,7 +2,6 @@
 #define GAME_H
 
 #include <Windows.h>
-#include <string>
 #include <vector>
 
 #include "declarations.h"
@@ -18,10 +17,10 @@ public:
 	~Game();
 
 
-	GLvoid mainLoop();
-
 private:
 	GLFWwindow* window;
+
+	GLvoid mainLoop();
 };
 
 
