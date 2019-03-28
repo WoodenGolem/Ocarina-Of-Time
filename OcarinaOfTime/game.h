@@ -20,7 +20,7 @@ public:
 private:
 	GLFWwindow* window;
 
-	GLvoid mainLoop();
+	GLvoid loop();
 };
 
 

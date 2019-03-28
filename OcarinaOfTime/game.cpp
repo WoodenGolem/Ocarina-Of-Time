@@ -75,7 +75,7 @@ Game::Game(GLuint width, GLuint height, GLboolean fullscreen)
 	glfwSetInputMode(this->window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 
-	this->mainLoop();
+	this->loop();
 }
 Game::~Game()
 {
@@ -90,7 +90,7 @@ Game::~Game()
 }
 
 
-GLvoid Game::mainLoop()
+GLvoid Game::loop()
 {
 	Scene scene(this->window);
 	// GENERAL SETTINGS
