@@ -10,13 +10,20 @@
 class EntityManager
 {
 public:
-	EntityManager();
+	EntityManager(GLFWwindow* window);
 	~EntityManager();
 
+	// Initialization
 	GLvoid add(Texture* texture, Mesh* mesh);
 	GLvoid add(Mesh* mesh, Texture* texture);
 
+	// Input functions
+	GLvoid computeInputs(Entity* entity);
+
+	GLvoid update(GLuint shader_program, Camera* camera);
+
 private:
+	GLFWwindow* window;
 	std::vector<Entity*> entities;
 };
 

@@ -11,7 +11,7 @@
 class Scene
 {
 public:
-	Scene();
+	Scene(GLFWwindow* window);
 	GLvoid computeInputs(GLFWwindow* window);
 	GLvoid draw();
 

@@ -14,7 +14,8 @@ Entity::Entity(Texture* p_texture,
 	this->translation = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.0, 0.0));
 
 	// Physics
-	this->mass = 1;
+	this->m = 1;
+	this->v = 0;
 }
 
 
@@ -97,5 +98,44 @@ GLvoid Entity::applyForce(glm::vec3 force)
 }
 GLvoid Entity::update()
 {
+	static GLdouble lastTime = glfwGetTime();
+	GLdouble currentTime = glfwGetTime();
+	GLfloat deltaTime = currentTime - lastTime;
+
+	glm::vec3 F = { 0.0f, 0.0f, 0.0f };
+	for (int i = 0; i < this->forces.size(); i++) {
+		F += this->forces[i];
+	}
+
+	if (this->forces.size() == 0)
+		this->v = 0;
+
+	GLfloat a = glm::length(F) / this->m;
+
+	if (glm::length(F) != 0)
+	{
+		this->d += F;
+		this->v = glm::length(glm::vec3(glm::normalize(d) * a * deltaTime)) + this->v;
+
+		std::cout << this->v << std::endl;
+		if (this->v > 0.1) {
+			this->v = 0.1;
+		}
+
+		this->translate(glm::vec3(this->translation[3]) + glm::normalize(this->d) * this->v);
+	}
+	else 
+	{
+		this->d = { 0,0,0 };
+	}
+	this->translate(glm::vec3(this->translation[3]) + glm::normalize(this->d) * this->v);
+
+	this->forces.clear();
+	if (glm::length(F) > 0.1)
+	{
+		this->forces.push_back((-F) * 0.9f);
+	}
+
+	lastTime = currentTime;
 }
 

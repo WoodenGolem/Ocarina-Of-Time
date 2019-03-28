@@ -65,7 +65,7 @@ Game::~Game()
 
 GLvoid Game::mainLoop()
 {
-	Scene scene;
+	Scene scene(this->window);
 	// GENERAL SETTINGS
 	glClearColor(1.0f, 0.75f, 0.0f, 0.0f);
 	// Enable depth test
