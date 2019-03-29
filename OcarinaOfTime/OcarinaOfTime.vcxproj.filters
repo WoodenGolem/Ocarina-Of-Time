@@ -116,28 +116,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="resources\meshes\cube.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\terrain.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\suzanne.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\cube1x1.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\flat.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\liteterrain.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\player.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
     <Object Include="resources\meshes\link.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\testing.obj">
       <Filter>resources\meshes</Filter>
     </Object>
   </ItemGroup>

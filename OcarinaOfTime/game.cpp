@@ -112,7 +112,7 @@ GLvoid Game::loop()
 	do
 	{
 		if (glfwGetTime() - timer > 1) {
-			std::cout << "FPS: " << fps << std::endl;
+			//std::cout << "FPS: " << fps << std::endl;
 			fps = 0;
 			timer = glfwGetTime();			
 		}

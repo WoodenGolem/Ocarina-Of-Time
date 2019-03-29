@@ -11,13 +11,10 @@ class Player : public Entity
 public:
 	Player(Texture* texture, Mesh* mesh);
 
-	GLvoid computeInputs(GLFWwindow* window, std::vector<Entity*> entities);
 	bool broadCollisionTest(Entity* entity);
 	bool nearCollisionTest(Entity* entity);
 
 private:
-	glm::vec3 pos;
-	GLfloat speed;
 };
 
 

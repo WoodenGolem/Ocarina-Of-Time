@@ -2,8 +2,10 @@
 
 
 
-EntityManager::EntityManager(GLFWwindow* window){
+EntityManager::EntityManager(GLFWwindow* window, Texture* texture, Mesh* mesh){
 	this->window = window;
+	this->player = new Player(texture, mesh);
+	this->player->translate(0, 1, 0);
 }
 EntityManager::~EntityManager()
 {
@@ -17,7 +19,6 @@ EntityManager::~EntityManager()
 GLvoid EntityManager::add(Texture* texture, Mesh* mesh)
 {
 	this->entities.push_back(new Entity(texture, mesh));
-	this->entities[0]->translate(1, 1, 1);
 }
 GLvoid EntityManager::add(Mesh* mesh, Texture* texture)
 {
@@ -25,31 +26,39 @@ GLvoid EntityManager::add(Mesh* mesh, Texture* texture)
 }
 
 // input functions
-GLvoid EntityManager::computeInputs(Entity* entity)
+GLvoid EntityManager::computeInputs(Player* player)
 {
 	if (glfwGetKey(this->window, GLFW_KEY_UP) == GLFW_PRESS) {
-		entity->applyForce({ 0, 0, -1 });
+		player->applyForce({ 0, 0, -1 });
 	}
 
 	if (glfwGetKey(this->window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-		entity->applyForce({ 0, 0, 1 });
+		player->applyForce({ 0, 0, 1 });
 	}
 
 	if (glfwGetKey(this->window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-		entity->applyForce({ -1, 0, 0 });
+		player->applyForce({ -1, 0, 0 });
 	}
 
 	if (glfwGetKey(this->window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-		entity->applyForce({ 1, 0, 0 });
+		player->applyForce({ 1, 0, 0 });
+	}
+
+	if (glfwGetKey(this->window, GLFW_KEY_C) == GLFW_PRESS) {
+		player->applyForce({ 0, -1, 0 });
 	}
 }
 
 GLvoid EntityManager::update(GLuint shader_program, Camera* camera)
 {
-	
-	computeInputs(entities[0]);
-	entities[0]->update();
+	computeInputs(this->player);
+	if (this->player->broadCollisionTest(this->entities[0]))
+	{
+		std::cout << "Collision" << std::endl;
+	}
+	this->player->update();
+	this->player->draw(shader_program, camera);
+
+	entities[0]->scale(10, 10, 10);
 	entities[0]->draw(shader_program, camera);
-	entities[1]->draw(shader_program, camera);
-	entities[1]->scale(10, 1, 10);
 }

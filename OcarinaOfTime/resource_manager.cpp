@@ -22,23 +22,13 @@ GLvoid ResourceManager::load()
 	this->shader_programs.push_back(this->loadShader("resources/shader/vertex_shader.vert", 
 													 "resources/shader/fragment_shader.frag"));
 
-	this->meshes.push_back(new Mesh("resources/meshes/cube1x1.obj"));	  // 0
-	this->meshes.push_back(new Mesh("resources/meshes/terrain.obj"));	  // 1
-	this->meshes.push_back(new Mesh("resources/meshes/liteterrain.obj")); // 2
-	this->meshes.push_back(new Mesh("resources/meshes/player.obj"));	  // 3
-	this->meshes.push_back(new Mesh("resources/meshes/simpleplane.obj")); // 4
-	//this->meshes.push_back(new Mesh("resources/meshes/pyramid.obj"));	  // 
-	this->meshes.push_back(new Mesh("resources/meshes/link.obj"));		  // 5
-	//this->meshes.push_back(new Mesh("resources/meshes/sphere1x1.obj")); // 
+	this->meshes.push_back(new Mesh("resources/meshes/link.obj"));	  // 0
+	this->meshes.push_back(new Mesh("resources/meshes/testing.obj")); // 1
 
 
 	this->textures.push_back(new Texture({ this->loadTexture("resources/textures/link.bmp"),
 							 GLuint(glGetUniformLocation(this->shader_programs[0], "TextureSampler")) }));
 	this->textures.push_back(new Texture({ this->loadTexture("resources/textures/grid.bmp"),
-							 GLuint(glGetUniformLocation(this->shader_programs[0], "TextureSampler")) }));
-	this->textures.push_back(new Texture({ this->loadTexture("resources/textures/green.bmp"),
-							 GLuint(glGetUniformLocation(this->shader_programs[0], "TextureSampler")) }));
-	this->textures.push_back(new Texture({ this->loadTexture("resources/textures/player.bmp"),
 							 GLuint(glGetUniformLocation(this->shader_programs[0], "TextureSampler")) }));
 }
 
