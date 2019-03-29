@@ -19,6 +19,7 @@ private:
 	ResourceManager* resources;
 	EntityManager* entities;
 	Camera* camera;
+
 	Player* player;
 	GLuint light_source;
 };
