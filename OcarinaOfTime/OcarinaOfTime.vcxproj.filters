@@ -30,9 +30,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="game.cpp">
-      <Filter>source files</Filter>
-    </ClCompile>
     <ClCompile Include="camera.cpp">
       <Filter>source files</Filter>
     </ClCompile>
@@ -57,11 +54,11 @@
     <ClCompile Include="main.cpp">
       <Filter>main</Filter>
     </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game.h">
-      <Filter>header files</Filter>
-    </ClInclude>
     <ClInclude Include="declarations.h">
       <Filter>header files</Filter>
     </ClInclude>
@@ -85,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="entity_manager.h">
       <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

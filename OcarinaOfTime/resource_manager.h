@@ -5,8 +5,6 @@
 #include <fstream>
 #include <sstream>
 
-#include "SOIL.h"
-
 #include "declarations.h"
 #include "mesh.h"
 
