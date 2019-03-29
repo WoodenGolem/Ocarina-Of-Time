@@ -35,5 +35,10 @@ struct BoundingBox {
 	}
 };
 
+struct Plane {
+	glm::vec3 pos;
+	glm::vec3 normal;
+};
+
 #endif // !DECLARATIONS_H
 
