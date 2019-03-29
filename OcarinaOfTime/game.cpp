@@ -102,6 +102,9 @@ GLvoid Game::loop()
 	glEnable(GL_CULL_FACE);
 	
 
+	std::cout << glm::length(glm::vec3(0, 0, 0)) << std::endl;
+
+
 	// MAIN LOOP
 	GLdouble fps_limit_timer;
 	GLdouble timer = glfwGetTime();
@@ -111,8 +114,7 @@ GLvoid Game::loop()
 		if (glfwGetTime() - timer > 1) {
 			std::cout << "FPS: " << fps << std::endl;
 			fps = 0;
-			timer = glfwGetTime();
-			
+			timer = glfwGetTime();			
 		}
 		else {
 			fps++;

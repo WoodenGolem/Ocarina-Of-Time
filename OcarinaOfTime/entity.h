@@ -45,10 +45,9 @@ protected:
 
 	// Physics
 	std::vector<glm::vec3> forces;
-	glm::vec3 d;
-	GLfloat v;
-	GLdouble m;
-	glm::vec3 p;
+	glm::vec3 direction;
+	GLfloat velocity;
+	GLdouble mass;
 };
 
 

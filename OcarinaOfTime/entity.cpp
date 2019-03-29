@@ -9,13 +9,14 @@ Entity::Entity(Texture* p_texture,
 	this->mesh = p_mesh;
 
 	// Transforming
-	this->scaling	  = glm::scale(glm::vec3(1.0, 1.0, 1.0));
-	this->rotation	  = glm::rotate(glm::radians(0.0f), glm::vec3(0.0, 1.0, 0.0));
-	this->translation = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.0, 0.0));
+	this->scaling	  = glm::scale(glm::vec3(1.0f, 1.0f, 1.0f));
+	this->rotation	  = glm::rotate(glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	this->translation = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 
 	// Physics
-	this->m = 1;
-	this->v = 0;
+	this->direction = { 0,0,0 };
+	this->velocity = 0;
+	this->mass = 10;	// For later
 }
 
 
@@ -102,40 +103,43 @@ GLvoid Entity::update()
 	GLdouble currentTime = glfwGetTime();
 	GLfloat deltaTime = currentTime - lastTime;
 
-	glm::vec3 F = { 0.0f, 0.0f, 0.0f };
+	// Sum up applied forces
+	glm::vec3 force = { 0.0f, 0.0f, 0.0f };
 	for (int i = 0; i < this->forces.size(); i++) {
-		F += this->forces[i];
+		force += this->forces[i];
 	}
 
-	if (this->forces.size() == 0)
-		this->v = 0;
-
-	GLfloat a = glm::length(F) / this->m;
-
-	if (glm::length(F) != 0)
+	if (this->forces.size() > 0)
 	{
-		this->d += F;
-		this->v = glm::length(glm::vec3(glm::normalize(d) * a * deltaTime)) + this->v;
+		this->direction = force;
+	}
 
-		std::cout << this->v << std::endl;
-		if (this->v > 0.1) {
-			this->v = 0.1;
+	GLfloat acceleration = glm::length(force) / this->mass;
+	this->velocity += acceleration * deltaTime;
+
+	if (glm::length(force) == 0)
+	{
+		this->velocity *= 0.93f;
+		if (velocity < 0.01)
+		{
+			this->velocity = 0;
+			this->direction = { 0,0,0 };
 		}
-
-		this->translate(glm::vec3(this->translation[3]) + glm::normalize(this->d) * this->v);
 	}
-	else 
+
+	if (velocity > 0.1)
 	{
-		this->d = { 0,0,0 };
+		this->velocity = 0.1;
 	}
-	this->translate(glm::vec3(this->translation[3]) + glm::normalize(this->d) * this->v);
 
+	if (this->direction != glm::vec3(0, 0, 0))
+	{
+		glm::vec3 position(this->translation[3].x, this->translation[3].y, this->translation[3].z);
+		this->translate(position + glm::normalize(this->direction) * this->velocity);
+	}
+
+	
 	this->forces.clear();
-	if (glm::length(F) > 0.1)
-	{
-		this->forces.push_back((-F) * 0.9f);
-	}
-
 	lastTime = currentTime;
 }
 

@@ -9,6 +9,7 @@ Scene::Scene(GLFWwindow* window)
 
 	this->entities = new EntityManager(window);
 	this->entities->add(this->resources->texture(0), this->resources->mesh(5));
+	this->entities->add(this->resources->mesh(4), this->resources->texture(1));
 
 	// PLAYER
 	this->player = new Player(this->resources->texture(0), this->resources->mesh(5));
@@ -33,6 +34,7 @@ GLvoid Scene::draw()
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	player->draw(resources->shader(0), this->camera);
+
 	this->entities->update(resources->shader(0), this->camera);
 
 	glUseProgram(this->resources->shader(0));

@@ -46,7 +46,10 @@ GLvoid EntityManager::computeInputs(Entity* entity)
 
 GLvoid EntityManager::update(GLuint shader_program, Camera* camera)
 {
+	
 	computeInputs(entities[0]);
 	entities[0]->update();
 	entities[0]->draw(shader_program, camera);
+	entities[1]->draw(shader_program, camera);
+	entities[1]->scale(10, 1, 10);
 }
