@@ -49,6 +49,5 @@ bool Player::nearCollisionTest(Entity* entity)
 		a = glfwGetTime();
 	}
 
-
 	return false;
 }

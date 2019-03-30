@@ -190,15 +190,8 @@ GLboolean Mesh::loadMesh(
 
 Plane Mesh::get_plane(GLuint index)
 {
-	if (((this->vertices.size() / 3.0f) >= index - 1) && index > 0)
-	{
-		Plane plane = { this->vertices[index * 3], this->normals[index * 3] };
-		return plane;
-	}
-	else
-	{
-		return Plane({ this->vertices[this->vertices.size() - 3], this->normals[this->normals.size() - 3] });
-	}
+	Plane plane = { this->vertices[index * 3], this->normals[index * 3] };
+	return plane;
 }
 GLuint Mesh::get_vertex_count() 
 {
