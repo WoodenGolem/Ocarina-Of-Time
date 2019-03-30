@@ -54,7 +54,8 @@ GLvoid EntityManager::update(GLuint shader_program, Camera* camera)
 	computeInputs(this->player);
 	if (this->player->broadCollisionTest(this->entities[0]))
 	{
-		std::cout << "Collision" << std::endl;
+		this->player->nearCollisionTest(this->entities[0]);
+		//std::cout << "Collision" << std::endl;
 	}
 	this->player->update();
 	this->player->draw(shader_program, camera);

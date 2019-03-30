@@ -12,6 +12,7 @@ public:
 	~Mesh();
 	GLvoid draw();
 	BoundingBox get_boundingBox();
+	GLuint get_vertex_count();
 	Plane get_plane(GLuint index);
 
 private:

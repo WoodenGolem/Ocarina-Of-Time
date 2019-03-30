@@ -73,6 +73,10 @@ GLvoid Entity::translate(glm::vec3 xyz)
 {
 	this->translation = glm::translate(glm::mat4(1.0), xyz);
 }
+Mesh* Entity::get_mesh() const
+{
+	return this->mesh;
+}
 
 // Physics
 BoundingBox Entity::calcBoundingBox()

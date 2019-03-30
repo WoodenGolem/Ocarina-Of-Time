@@ -33,5 +33,22 @@ bool Player::broadCollisionTest(Entity* entity)
 }
 bool Player::nearCollisionTest(Entity* entity)
 {
+	static GLdouble a = glfwGetTime();
+
+	if (glfwGetTime() - a > 1)
+	{
+		for (int i = 0; i < entity->get_mesh()->get_vertex_count() / 3; i++)
+		{
+			Plane plane = entity->get_mesh()->get_plane(i);
+			plane.transform(entity->modelMatrix());
+
+			std::cout << plane.distance({ 0,1,0 }) << std::endl;
+		}
+		std::cout << std::endl;
+
+		a = glfwGetTime();
+	}
+
+
 	return false;
 }

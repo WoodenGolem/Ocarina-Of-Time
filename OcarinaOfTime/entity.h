@@ -25,18 +25,19 @@ public:
 	GLvoid rotate(GLfloat angle, glm::vec3 axis);
 	GLvoid translate(GLdouble x, GLdouble y, GLdouble z);
 	GLvoid translate(glm::vec3 xyz);
+	Mesh* get_mesh() const;
 
 	// Physics
 	BoundingBox calcBoundingBox();
 	GLvoid applyForce(glm::vec3 force);
 	GLvoid update();
-
+	glm::mat4 modelMatrix();
 
 protected:
 	// Rendering
 	Mesh* mesh;
 	Texture* texture;
-	glm::mat4 modelMatrix();
+
 
 	// Transformation
 	glm::mat4 scaling;
