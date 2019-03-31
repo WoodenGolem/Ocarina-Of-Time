@@ -3,6 +3,7 @@
 
 Scene::Scene(GLFWwindow* window)
 {
+	// HIGHLY EXPERIMENTAL
 	// Everthing in here needs to be moved to future sceneloader function
 	this->resources = new ResourceManager;
 	this->resources->load();
