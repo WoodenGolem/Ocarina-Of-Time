@@ -8,7 +8,7 @@ Scene::Scene(GLFWwindow* window)
 	this->resources->load();
 
 	this->entities = new EntityManager(window, this->resources->texture(0), this->resources->mesh(0));
-	this->entities->add(this->resources->texture(1), this->resources->mesh(1));
+	this->entities->add(this->resources->texture(1), this->resources->mesh(2));
 
 	// CAM
 	this->camera = new Camera;
@@ -19,7 +19,6 @@ Scene::Scene(GLFWwindow* window)
 
 GLvoid Scene::computeInputs(GLFWwindow* window)
 {
-	//this->player->computeInputs(window);
 	this->camera->computeInputs(window);
 }
 

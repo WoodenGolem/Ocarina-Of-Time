@@ -14,9 +14,8 @@ Entity::Entity(Texture* p_texture,
 	this->translation = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 
 	// Physics
-	this->direction = { 0,0,0 };
-	this->velocity = 0;
-	this->mass = 10;	// For later
+	this->velocity = { 0,0,0 };
+	this->mass = 1;	// For later
 }
 
 
@@ -77,6 +76,10 @@ Mesh* Entity::get_mesh() const
 {
 	return this->mesh;
 }
+glm::vec3 Entity::get_position() const
+{
+	return glm::vec3(this->translation[3]);
+}
 
 // Physics
 BoundingBox Entity::calcBoundingBox()
@@ -103,10 +106,6 @@ GLvoid Entity::applyForce(glm::vec3 force)
 }
 GLvoid Entity::update()
 {
-	static GLdouble lastTime = glfwGetTime();
-	GLdouble currentTime = glfwGetTime();
-	GLfloat deltaTime = currentTime - lastTime;
-
 	// Sum up applied forces
 	glm::vec3 force = { 0.0f, 0.0f, 0.0f };
 	for (int i = 0; i < this->forces.size(); i++) {
@@ -115,34 +114,32 @@ GLvoid Entity::update()
 
 	if (this->forces.size() > 0)
 	{
-		this->direction = force;
+		this->velocity += force / this->mass;
 	}
-
-	GLfloat acceleration = glm::length(force) / this->mass;
-	this->velocity += acceleration * deltaTime;
 
 	if (glm::length(force) == 0)
 	{
 		this->velocity *= 0.93f;
-		if (velocity < 0.01)
+		if (glm::length(velocity) < 0.01)
 		{
-			this->velocity = 0;
-			this->direction = { 0,0,0 };
+			this->velocity = { 0,0,0 };
 		}
 	}
 
-	if (velocity > 0.1)
+	if (glm::length(velocity) > 5)
 	{
-		this->velocity = 0.1;
+		this->velocity = glm::normalize(this->velocity) * 5.0f;
 	}
+}
+GLvoid Entity::move()
+{
+	static GLfloat lastTime = glfwGetTime();
+	GLfloat currentTime = glfwGetTime();
+	GLfloat deltaTime = currentTime - lastTime;
 
-	if (this->direction != glm::vec3(0, 0, 0))
-	{
-		glm::vec3 position(this->translation[3].x, this->translation[3].y, this->translation[3].z);
-		this->translate(position + glm::normalize(this->direction) * this->velocity);
-	}
+	glm::vec3 position(this->translation[3].x, this->translation[3].y, this->translation[3].z);
+	this->translate(position + this->velocity * deltaTime);
 
-	
 	this->forces.clear();
 	lastTime = currentTime;
 }

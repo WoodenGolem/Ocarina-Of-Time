@@ -5,7 +5,6 @@
 EntityManager::EntityManager(GLFWwindow* window, Texture* texture, Mesh* mesh){
 	this->window = window;
 	this->player = new Player(texture, mesh);
-	this->player->translate(0, 1, 0);
 }
 EntityManager::~EntityManager()
 {
@@ -47,18 +46,21 @@ GLvoid EntityManager::computeInputs(Player* player)
 	if (glfwGetKey(this->window, GLFW_KEY_C) == GLFW_PRESS) {
 		player->applyForce({ 0, -1, 0 });
 	}
+
+	// Gravity
+	player->applyForce({ 0, -1, 0 });
 }
 
 GLvoid EntityManager::update(GLuint shader_program, Camera* camera)
 {
 	computeInputs(this->player);
-	if (this->player->broadCollisionTest(this->entities[0]))
-	{
-		this->player->nearCollisionTest(this->entities[0]);
-		//std::cout << "Collision" << std::endl;
-	}
+	this->player->nearCollisionTest(this->entities[0]);
+
 	this->player->update();
+	this->player->debug();
+	//this->player->move();
 	this->player->draw(shader_program, camera);
+
 
 	entities[0]->scale(10, 10, 10);
 	entities[0]->draw(shader_program, camera);

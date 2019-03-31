@@ -26,6 +26,7 @@ public:
 private:
 	GLFWwindow* window;
 	Player* player;
+	GLfloat deltaTime;
 	std::vector<Entity*> entities;
 };
 

@@ -14,7 +14,10 @@ public:
 	bool broadCollisionTest(Entity* entity);
 	bool nearCollisionTest(Entity* entity);
 
+	GLvoid debug();
+
 private:
+	glm::vec3 ellipsoid;
 };
 
 

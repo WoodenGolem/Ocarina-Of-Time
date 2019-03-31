@@ -111,8 +111,9 @@ GLvoid Game::loop()
 	GLuint fps = 0;
 	do
 	{
+		// Following code is about the FPS counter
 		if (glfwGetTime() - timer > 1) {
-			//std::cout << "FPS: " << fps << std::endl;
+			std::cout << "FPS: " << fps << std::endl;
 			fps = 0;
 			timer = glfwGetTime();			
 		}
@@ -121,16 +122,19 @@ GLvoid Game::loop()
 		}
 		fps_limit_timer = glfwGetTime();
 
+		// Clears the screen buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		// Computes the camera movements
 		scene.computeInputs(this->window);
 		scene.draw();
 
+		// Swaps buffers and polls key and mouse events
 		glfwSwapBuffers(this->window);
 		glfwPollEvents();
 
 		// FPS LIMITER
-		Sleep(1000 / 120 - (glfwGetTime() - fps_limit_timer));
+		//Sleep(1000 / 120 - (glfwGetTime() - fps_limit_timer));
 
 	} while (glfwGetKey(this->window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 			 glfwWindowShouldClose(this->window) == 0);

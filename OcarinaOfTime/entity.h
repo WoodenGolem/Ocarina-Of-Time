@@ -26,11 +26,13 @@ public:
 	GLvoid translate(GLdouble x, GLdouble y, GLdouble z);
 	GLvoid translate(glm::vec3 xyz);
 	Mesh* get_mesh() const;
+	glm::vec3 get_position() const;
 
 	// Physics
 	BoundingBox calcBoundingBox();
 	GLvoid applyForce(glm::vec3 force);
 	GLvoid update();
+	GLvoid move();
 	glm::mat4 modelMatrix();
 
 protected:
@@ -46,9 +48,8 @@ protected:
 
 	// Physics
 	std::vector<glm::vec3> forces;
-	glm::vec3 direction;
-	GLfloat velocity;
-	GLdouble mass;
+	glm::vec3 velocity;
+	GLfloat mass;
 };
 
 

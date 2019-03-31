@@ -119,7 +119,7 @@
     <Object Include="resources\meshes\link.obj">
       <Filter>resources\meshes</Filter>
     </Object>
-    <Object Include="resources\meshes\testing.obj">
+    <Object Include="resources\meshes\testmap.obj">
       <Filter>resources\meshes</Filter>
     </Object>
   </ItemGroup>
