@@ -19,6 +19,8 @@ Scene::Scene(GLFWwindow* window)
 
 GLvoid Scene::computeInputs(GLFWwindow* window)
 {
+	// Currently only deals camera movements
+	// The physical movement of the player is handled in the Entity Manager
 	this->camera->computeInputs(window);
 }
 
