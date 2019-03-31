@@ -24,7 +24,6 @@ GLvoid Scene::computeInputs(GLFWwindow* window)
 	// The physical movement of the player is handled in the Entity Manager
 	this->camera->computeInputs(window);
 }
-
 GLvoid Scene::draw()
 {
 	// Send light position to shader
