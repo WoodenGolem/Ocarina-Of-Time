@@ -21,12 +21,15 @@ public:
 	// Input functions
 	GLvoid computeInputs(Player* player);
 
+	// Update cycle
 	GLvoid update(GLuint shader_program, Camera* camera);
 
 private:
 	GLFWwindow* window;
 	Player* player;
-	GLfloat deltaTime;
+
+	GLfloat deltaTime; // ?
+
 	std::vector<Entity*> entities;
 };
 

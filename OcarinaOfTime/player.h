@@ -12,7 +12,7 @@ public:
 	Player(Texture* texture, Mesh* mesh);
 
 	bool broadCollisionTest(Entity* entity);
-	bool nearCollisionTest(Entity* entity);
+	bool nearCollisionTest(Entity* entity, GLfloat deltaTime);
 
 	GLvoid debug();
 

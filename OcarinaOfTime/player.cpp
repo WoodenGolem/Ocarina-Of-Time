@@ -8,7 +8,8 @@ Player::Player(Texture* texture, Mesh* mesh)
 	this->ellipsoid = { boundingBox.max_x, boundingBox.max_y, boundingBox.max_z };
 
 	boundingBox.print();
-	this->translate(0, boundingBox.max_y+0.01, 0);
+	this->translate(0, boundingBox.max_y + 0.01, 0);
+	this->translate(0, 10, 0);
 }
 
 bool Player::broadCollisionTest(Entity* entity)
@@ -36,13 +37,13 @@ bool Player::broadCollisionTest(Entity* entity)
 
 	return true;
 }
-bool Player::nearCollisionTest(Entity* entity)
+bool Player::nearCollisionTest(Entity* entity, GLfloat deltaTime)
 {
 	static GLfloat lastTime = glfwGetTime();
 	GLfloat currentTime = glfwGetTime();
-	GLfloat deltaTime = currentTime - lastTime;
+	GLfloat dTime = currentTime - lastTime;
 
-	if (deltaTime > 1)
+	//if (dTime > 1)
 		for (int i = 0; i < entity->get_mesh()->get_vertex_count() / 3; i++)
 		{
 			Plane plane = entity->get_mesh()->get_plane(i);
@@ -53,16 +54,34 @@ bool Player::nearCollisionTest(Entity* entity)
 			plane.pos /= this->ellipsoid;
 			plane.normal /= this->ellipsoid;
 
-			std::cout << std::endl << "NEAR" << std::endl;
+			//std::cout << std::endl << "NEAR" << std::endl;
 			glm::vec3 v = this->velocity * deltaTime;
-			std::cout << v.x << " ";
-			std::cout << v.y << " ";
-			std::cout << v.z << std::endl;
-			std::cout << "D: " << plane.distance(this->get_position()) << std::endl;
-			std::cout << "t0: " << (1 - plane.distance(this->get_position())) / (glm::dot(plane.normal, v)) << std::endl;
-			std::cout << "t1: " << (-1 - plane.distance(this->get_position())) / (glm::dot(plane.normal, v)) << std::endl;
+			v /= this->ellipsoid;
+			//std::cout << v.x << " ";
+			//std::cout << v.y << " ";
+	        //std::cout << v.z << std::endl;
+			//std::cout << "dTime: " << deltaTime << std::endl;
+			//std::cout << "Dist: " << plane.distance(this->get_position()) << std::endl;
+			GLfloat t0, t1;
+			if (v != glm::vec3({ 0,0,0 })) 
+			{
+				t0 = (1 - plane.distance(this->get_position())) / (glm::dot(plane.normal, v)) * deltaTime;
+				t1 = (-1 - plane.distance(this->get_position())) / (glm::dot(plane.normal, v)) * deltaTime;
+			}
+			else
+			{
+				return false;
+			}
+			
+			//std::cout << "t0: " << t0 << std::endl;
+			//std::cout << "t1: " << t1 << std::endl;
 
-			std::cout << std::endl;
+			if ((t0 < deltaTime*2 && t0 >= 0) || (t1 < deltaTime*2 && t1 >= 0))
+			{
+				return true;
+			}
+
+			//std::cout << std::endl;
 			lastTime = currentTime;
 		}
 

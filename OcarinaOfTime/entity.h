@@ -31,8 +31,10 @@ public:
 	// Physics
 	BoundingBox calcBoundingBox();
 	GLvoid applyForce(glm::vec3 force);
+	GLvoid removeForce();
 	GLvoid update();
-	GLvoid move();
+	GLvoid move(GLfloat deltaTime);
+	GLvoid stop();
 	glm::mat4 modelMatrix();
 
 protected:

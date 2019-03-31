@@ -104,6 +104,10 @@ GLvoid Entity::applyForce(glm::vec3 force)
 {
 	this->forces.push_back(force);
 }
+GLvoid Entity::removeForce()
+{
+	this->forces.pop_back();
+}
 GLvoid Entity::update()
 {
 	// Sum up applied forces
@@ -130,17 +134,19 @@ GLvoid Entity::update()
 	{
 		this->velocity = glm::normalize(this->velocity) * 5.0f;
 	}
-}
-GLvoid Entity::move()
-{
-	static GLfloat lastTime = glfwGetTime();
-	GLfloat currentTime = glfwGetTime();
-	GLfloat deltaTime = currentTime - lastTime;
 
-	glm::vec3 position(this->translation[3].x, this->translation[3].y, this->translation[3].z);
+	this->forces.clear();
+}
+GLvoid Entity::move(GLfloat deltaTime)
+{
+	glm::vec3 position(this->translation[3]);
 	this->translate(position + this->velocity * deltaTime);
 
 	this->forces.clear();
-	lastTime = currentTime;
+}
+
+GLvoid Entity::stop()
+{
+	this->velocity = { 0,0,0 };
 }
 
