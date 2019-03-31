@@ -18,7 +18,7 @@ ResourceManager::~ResourceManager()
 
 GLvoid ResourceManager::loadResources()
 {
-	// HIGHLY EXPERIMENTAL NEEDS A MAJOR OVERHAUL IN THE FUTURE!!!
+	// HIGHLY EXPERIMENTAL: NEEDS A MAJOR OVERHAUL IN THE FUTURE!!!
 
 	// SHADERS
 	this->shader_programs.push_back(this->loadShader("resources/shader/vertex_shader.vert", 
