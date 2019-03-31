@@ -24,10 +24,15 @@ GLvoid Scene::computeInputs(GLFWwindow* window)
 
 GLvoid Scene::draw()
 {
+	// Send light position to shader
 	glUniform3f(this->light_source, 0, 50, 50);
 
+	// Solid polygon drawing
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+	// HEAVILY EXPERIMENTAL
 	this->entities->update(resources->shader(0), this->camera);
 
+	// Use the standard shader
 	glUseProgram(this->resources->shader(0));
 }
