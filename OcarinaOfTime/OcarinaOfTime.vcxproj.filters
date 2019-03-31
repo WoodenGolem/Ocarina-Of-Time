@@ -122,5 +122,8 @@
     <Object Include="resources\meshes\testmap.obj">
       <Filter>resources\meshes</Filter>
     </Object>
+    <Object Include="resources\meshes\triangle.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
   </ItemGroup>
 </Project>
