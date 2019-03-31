@@ -6,7 +6,7 @@ Scene::Scene(GLFWwindow* window)
 	// HIGHLY EXPERIMENTAL
 	// Everthing in here needs to be moved to future sceneloader function
 	this->resources = new ResourceManager;
-	this->resources->load();
+	this->resources->loadResources();
 
 	this->entities = new EntityManager(window, this->resources->texture(0), this->resources->mesh(0));
 	this->entities->add(this->resources->texture(1), this->resources->mesh(2));

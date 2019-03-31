@@ -11,10 +11,9 @@
 class ResourceManager
 {
 public:
-	ResourceManager();
 	~ResourceManager();
 	
-	GLvoid load();
+	GLvoid loadResources();
 	GLuint shader(GLuint id);
 	Texture* texture(GLuint id);
 	Mesh* mesh(GLuint id);
