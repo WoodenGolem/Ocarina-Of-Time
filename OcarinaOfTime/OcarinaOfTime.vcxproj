@@ -157,35 +157,11 @@
     <None Include="resources\shader\vertex_shader.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="resources\meshes\cube.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
-    </Object>
-    <Object Include="resources\meshes\cube1x1.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
-    </Object>
-    <Object Include="resources\meshes\flat.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
-    </Object>
     <Object Include="resources\meshes\link.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Object>
-    <Object Include="resources\meshes\liteterrain.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
-    </Object>
-    <Object Include="resources\meshes\player.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
-    </Object>
-    <Object Include="resources\meshes\suzanne.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
-    </Object>
-    <Object Include="resources\meshes\terrain.obj">
+    <Object Include="resources\meshes\testmap.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Yes</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Yes</ExcludedFromBuild>
     </Object>

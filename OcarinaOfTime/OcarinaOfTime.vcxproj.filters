@@ -25,14 +25,11 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{ffafeb6b-fa3b-4620-a26a-18dc09ad3d94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>source files</Filter>
-    </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>source files</Filter>
-    </ClCompile>
     <ClCompile Include="camera.cpp">
       <Filter>source files</Filter>
     </ClCompile>
@@ -54,11 +51,14 @@
     <ClCompile Include="entity_manager.cpp">
       <Filter>source files</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game.h">
-      <Filter>header files</Filter>
-    </ClInclude>
     <ClInclude Include="declarations.h">
       <Filter>header files</Filter>
     </ClInclude>
@@ -82,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="entity_manager.h">
       <Filter>header files</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -113,28 +116,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="resources\meshes\cube.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\terrain.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\suzanne.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\cube1x1.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\flat.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\liteterrain.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
-    <Object Include="resources\meshes\player.obj">
-      <Filter>resources\meshes</Filter>
-    </Object>
     <Object Include="resources\meshes\link.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\testmap.obj">
       <Filter>resources\meshes</Filter>
     </Object>
   </ItemGroup>

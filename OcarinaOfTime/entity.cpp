@@ -9,12 +9,13 @@ Entity::Entity(Texture* p_texture,
 	this->mesh = p_mesh;
 
 	// Transforming
-	this->scaling	  = glm::scale(glm::vec3(1.0, 1.0, 1.0));
-	this->rotation	  = glm::rotate(glm::radians(0.0f), glm::vec3(0.0, 1.0, 0.0));
-	this->translation = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.0, 0.0));
+	this->scaling	  = glm::scale(glm::vec3(1.0f, 1.0f, 1.0f));
+	this->rotation	  = glm::rotate(glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	this->translation = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 
 	// Physics
-	this->mass = 1;
+	this->velocity = { 0,0,0 };
+	this->mass = 1;	// For later
 }
 
 
@@ -71,6 +72,14 @@ GLvoid Entity::translate(glm::vec3 xyz)
 {
 	this->translation = glm::translate(glm::mat4(1.0), xyz);
 }
+Mesh* Entity::get_mesh() const
+{
+	return this->mesh;
+}
+glm::vec3 Entity::get_position() const
+{
+	return glm::vec3(this->translation[3]);
+}
 
 // Physics
 BoundingBox Entity::calcBoundingBox()
@@ -95,7 +104,49 @@ GLvoid Entity::applyForce(glm::vec3 force)
 {
 	this->forces.push_back(force);
 }
+GLvoid Entity::removeForce()
+{
+	this->forces.pop_back();
+}
 GLvoid Entity::update()
 {
+	// Sum up applied forces
+	glm::vec3 force = { 0.0f, 0.0f, 0.0f };
+	for (int i = 0; i < this->forces.size(); i++) {
+		force += this->forces[i];
+	}
+
+	if (this->forces.size() > 0)
+	{
+		this->velocity += force / this->mass;
+	}
+
+	if (glm::length(force) == 0)
+	{
+		this->velocity *= 0.93f;
+		if (glm::length(velocity) < 0.01)
+		{
+			this->velocity = { 0,0,0 };
+		}
+	}
+
+	if (glm::length(velocity) > 5)
+	{
+		this->velocity = glm::normalize(this->velocity) * 5.0f;
+	}
+
+	this->forces.clear();
+}
+GLvoid Entity::move(GLfloat deltaTime)
+{
+	glm::vec3 position(this->translation[3]);
+	this->translate(position + this->velocity * deltaTime);
+
+	this->forces.clear();
+}
+
+GLvoid Entity::stop()
+{
+	this->velocity = { 0,0,0 };
 }
 

@@ -4,49 +4,12 @@
 Player::Player(Texture* texture, Mesh* mesh)
 	: Entity(texture, mesh)
 {
-	this->pos = { 7,0,7 };
-	this->speed = 5.0f;
+	BoundingBox boundingBox = this->mesh->get_boundingBox();
+	this->ellipsoid = { boundingBox.max_x, boundingBox.max_y, boundingBox.max_z };
 
-	this->translation = this->translation = glm::translate(glm::mat4(1.0f), this->pos);
-}
-
-GLvoid Player::computeInputs(GLFWwindow* window, std::vector<Entity*> entities)
-{
-	static GLdouble lastTime = glfwGetTime();
-	GLdouble currentTime = glfwGetTime();
-	GLfloat deltaTime = GLfloat(currentTime - lastTime);
-
-	glm::vec3 dir = { 0, 0, -1 };
-	glm::vec3 up = { 0, 1, 0 };
-	glm::vec3 right = { 1, 0, 0 };
-
-	// FORWARD
-	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-		this->pos += dir * deltaTime * speed;
-	}
-	// BACKWARD
-	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-		this->pos -= dir * deltaTime * speed;
-	}
-	// STRAFE LEFT
-	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-		this->pos -= right * deltaTime * speed;
-	}
-	// STRAFE RIGHT
-	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-		this->pos += right * deltaTime * speed;
-	}
-
-	for (int i = 0; i < entities.size(); i++)
-	{
-		if (this->broadCollisionTest(entities[i]))
-		{
-			std::cout << "Collision!" << std::endl;
-		}	
-	}
-	
-	this->translate(this->pos);
-	lastTime = currentTime;
+	boundingBox.print();
+	this->translate(0, boundingBox.max_y + 0.01, 0);
+	this->translate(0, 10, 0);
 }
 
 bool Player::broadCollisionTest(Entity* entity)
@@ -74,7 +37,65 @@ bool Player::broadCollisionTest(Entity* entity)
 
 	return true;
 }
-bool Player::nearCollisionTest(Entity* entity)
+bool Player::nearCollisionTest(Entity* entity, GLfloat deltaTime)
 {
+	static GLfloat lastTime = glfwGetTime();
+	GLfloat currentTime = glfwGetTime();
+	GLfloat dTime = currentTime - lastTime;
+
+	//if (dTime > 1)
+		for (int i = 0; i < entity->get_mesh()->get_vertex_count() / 3; i++)
+		{
+			Plane plane = entity->get_mesh()->get_plane(i);
+			// TODO: Static meshes should have the modelMatrix already applied for better performance
+
+			// Transform Ellipsoid to eSpace
+			plane.transform(entity->modelMatrix());
+			plane.pos /= this->ellipsoid;
+			plane.normal /= this->ellipsoid;
+
+			//std::cout << std::endl << "NEAR" << std::endl;
+			glm::vec3 v = this->velocity * deltaTime;
+			v /= this->ellipsoid;
+			//std::cout << v.x << " ";
+			//std::cout << v.y << " ";
+	        //std::cout << v.z << std::endl;
+			//std::cout << "dTime: " << deltaTime << std::endl;
+			//std::cout << "Dist: " << plane.distance(this->get_position()) << std::endl;
+			GLfloat t0, t1;
+			if (v != glm::vec3({ 0,0,0 })) 
+			{
+				t0 = (1 - plane.distance(this->get_position())) / (glm::dot(plane.normal, v)) * deltaTime;
+				t1 = (-1 - plane.distance(this->get_position())) / (glm::dot(plane.normal, v)) * deltaTime;
+			}
+			else
+			{
+				return false;
+			}
+			
+			//std::cout << "t0: " << t0 << std::endl;
+			//std::cout << "t1: " << t1 << std::endl;
+
+			if ((t0 < deltaTime*2 && t0 >= 0) || (t1 < deltaTime*2 && t1 >= 0))
+			{
+				return true;
+			}
+
+			//std::cout << std::endl;
+			lastTime = currentTime;
+		}
+
 	return false;
 }
+
+GLvoid Player::debug()
+{
+	static GLdouble time = glfwGetTime();
+	if (glfwGetTime() - time > 1)
+	{
+		std::cout << "Ellipsoid: " << this->ellipsoid.x << " " << this->ellipsoid.y << " " << this->ellipsoid.z << std::endl;
+		std::cout << "V: " << glm::length(this->velocity) << std::endl;
+		time = glfwGetTime();
+	}
+}
+	

@@ -11,9 +11,9 @@ public:
 	Mesh(std::string mesh_file_path);
 	~Mesh();
 	GLvoid draw();
-	GLuint vertexCount();
-	std::vector<glm::vec3> get_vertices();
 	BoundingBox get_boundingBox();
+	GLuint get_vertex_count();
+	Plane get_plane(GLuint index);
 
 private:
 	GLboolean mesh_is_loaded;

@@ -77,7 +77,6 @@ Mesh::Mesh(std::string mesh_file_path)
 		if (this->vertices[i].z < boundingBox.min_z) this->boundingBox.min_z = this->vertices[i].z;
 	}
 }
-
 Mesh::~Mesh()
 {
 	glDeleteBuffers(1, &this->normal_buffer);
@@ -92,21 +91,10 @@ GLvoid Mesh::draw()
 	glDrawArrays(GL_TRIANGLES, 0, GLsizei(this->vertices.size()));
 }
 
-GLuint Mesh::vertexCount()
-{
-	return GLuint(this->vertices.size());
-}
-
-std::vector<glm::vec3> Mesh::get_vertices()
-{
-	return this->vertices;
-}
-
 BoundingBox Mesh::get_boundingBox()
 {
 	return this->boundingBox;
 }
-
 GLboolean Mesh::loadMesh(
 	std::string file_path,
 	std::vector<glm::vec3>& out_vertices,
@@ -198,4 +186,14 @@ GLboolean Mesh::loadMesh(
 	}
 
 	return GL_TRUE;
+}
+
+Plane Mesh::get_plane(GLuint index)
+{
+	Plane plane = { this->vertices[index * 3], this->normals[index * 3] };
+	return plane;
+}
+GLuint Mesh::get_vertex_count() 
+{
+	return this->vertices.size();
 }

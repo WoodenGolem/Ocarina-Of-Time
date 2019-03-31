@@ -5,18 +5,15 @@
 #include <fstream>
 #include <sstream>
 
-#include "SOIL.h"
-
 #include "declarations.h"
 #include "mesh.h"
 
 class ResourceManager
 {
 public:
-	ResourceManager();
 	~ResourceManager();
 	
-	GLvoid load();
+	GLvoid loadResources();
 	GLuint shader(GLuint id);
 	Texture* texture(GLuint id);
 	Mesh* mesh(GLuint id);

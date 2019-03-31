@@ -11,7 +11,7 @@
 class Scene
 {
 public:
-	Scene();
+	Scene(GLFWwindow* window);
 	GLvoid computeInputs(GLFWwindow* window);
 	GLvoid draw();
 
@@ -19,7 +19,7 @@ private:
 	ResourceManager* resources;
 	EntityManager* entities;
 	Camera* camera;
-	Player* player;
+
 	GLuint light_source;
 };
 
