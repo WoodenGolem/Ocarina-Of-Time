@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "declarations.h"
+#include "triangle.h"
 
 
 class Mesh
@@ -13,7 +14,7 @@ public:
 	GLvoid draw();
 	BoundingBox get_boundingBox();
 	GLuint get_vertex_count();
-	Plane get_plane(GLuint index);
+	Triangle get_triangle(GLuint index);
 
 private:
 	GLboolean mesh_is_loaded;

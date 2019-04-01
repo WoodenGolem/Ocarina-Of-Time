@@ -39,46 +39,46 @@ bool Player::broadCollisionTest(Entity* entity)
 }
 bool Player::nearCollisionTest(Entity* entity, GLfloat deltaTime)
 {
-	static GLfloat lastTime = glfwGetTime();
-	GLfloat currentTime = glfwGetTime();
+	static GLfloat lastTime = GLfloat(glfwGetTime());
+	GLfloat currentTime = GLfloat(glfwGetTime());
 	GLfloat dTime = currentTime - lastTime;
+
+	if (this->get_position().y < -15) {
+		std::cout << "Respawn!" << std::endl;
+		this->translate(0, 5, 0);
+	}
+
+	glm::mat3 eSpace = { {1 / this->ellipsoid.x, 0,0}, {0,1 / this->ellipsoid.y, 0}, {0,0,1 / this->ellipsoid.z} };
 
 	//if (dTime > 1)
 		for (int i = 0; i < entity->get_mesh()->get_vertex_count() / 3; i++)
 		{
-			Plane plane = entity->get_mesh()->get_plane(i);
+			Triangle triangle = entity->get_mesh()->get_triangle(i);
 			// TODO: Static meshes should have the modelMatrix already applied for better performance
 
 			// Transform Ellipsoid to eSpace
-			plane.transform(entity->modelMatrix());
-			plane.pos /= this->ellipsoid;
-			plane.normal /= this->ellipsoid;
+			triangle.transform(entity->modelMatrix());
+			triangle.transform(eSpace);
 
-			//std::cout << std::endl << "NEAR" << std::endl;
 			glm::vec3 v = this->velocity * deltaTime;
-			v /= this->ellipsoid;
-			//std::cout << v.x << " ";
-			//std::cout << v.y << " ";
-	        //std::cout << v.z << std::endl;
-			//std::cout << "dTime: " << deltaTime << std::endl;
-			//std::cout << "Dist: " << plane.distance(this->get_position()) << std::endl;
-			GLfloat t0, t1;
+			v = v * eSpace;
+			GLfloat t0, t1 = 0;
 			if (v != glm::vec3({ 0,0,0 })) 
 			{
-				t0 = (1 - plane.distance(this->get_position())) / (glm::dot(plane.normal, v)) * deltaTime;
-				t1 = (-1 - plane.distance(this->get_position())) / (glm::dot(plane.normal, v)) * deltaTime;
+				t0 = (1 - triangle.distance(this->get_position())) / (glm::dot(triangle.get_normal(), v)) * deltaTime;
+				t1 = (-1 - triangle.distance(this->get_position())) / (glm::dot(triangle.get_normal(), v)) * deltaTime;
 			}
 			else
 			{
 				return false;
 			}
-			
-			//std::cout << "t0: " << t0 << std::endl;
-			//std::cout << "t1: " << t1 << std::endl;
 
 			if ((t0 < deltaTime*2 && t0 >= 0) || (t1 < deltaTime*2 && t1 >= 0))
 			{
-				return true;
+				if (triangle.PointInTriangle(this->get_position() + v))
+				{
+					return true;
+				}
 			}
 
 			//std::cout << std::endl;

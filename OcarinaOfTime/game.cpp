@@ -99,7 +99,7 @@ GLvoid Game::loop()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	// Cull faces with normals away from camera
-	glEnable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
 	
 
 	std::cout << glm::length(glm::vec3(0, 0, 0)) << std::endl;
@@ -112,12 +112,14 @@ GLvoid Game::loop()
 	do
 	{
 		// Following code is about the FPS counter
-		if (glfwGetTime() - timer > 1) {
+		if (glfwGetTime() - timer > 1) 
+		{
 			std::cout << "FPS: " << fps << std::endl;
 			fps = 0;
 			timer = glfwGetTime();			
 		}
-		else {
+		else 
+		{
 			fps++;
 		}
 		fps_limit_timer = glfwGetTime();

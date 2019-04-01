@@ -27,7 +27,7 @@ GLvoid ResourceManager::loadResources()
 	// MESHES
 	this->meshes.push_back(new Mesh("resources/meshes/link.obj"));	  // 0
 	this->meshes.push_back(new Mesh("resources/meshes/testmap.obj")); // 1
-	this->meshes.push_back(new Mesh("resources/meshes/triangle.obj"));// 2
+	this->meshes.push_back(new Mesh("resources/meshes/square.obj"));  // 2
 
 	// TEXTURES
 	this->textures.push_back(new Texture({ this->loadTexture("resources/textures/link.bmp"),

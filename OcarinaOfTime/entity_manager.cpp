@@ -58,11 +58,10 @@ GLvoid EntityManager::update(GLuint shader_program, Camera* camera)
 
 	computeInputs(this->player);
 	this->player->update();
-	if (this->player->nearCollisionTest(this->entities[0], deltaTime))
+	if (this->player->nearCollisionTest(this->entities[0], deltaTime) )
 	{
 		std::cout << "INFO: Collision detected!" << std::endl;
 		this->player->stop();
-		this->player->update();
 	}
 	else
 	{
@@ -73,12 +72,10 @@ GLvoid EntityManager::update(GLuint shader_program, Camera* camera)
 		if (this->player->nearCollisionTest(this->entities[0], deltaTime))
 		{
 			this->player->stop();
-			this->player->update();
 		}
 		else
 		{
 			this->player->move(deltaTime);
-			//this->player->update();
 		}
 	}
 	

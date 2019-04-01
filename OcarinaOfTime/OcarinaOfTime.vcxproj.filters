@@ -57,6 +57,9 @@
     <ClCompile Include="game.cpp">
       <Filter>main</Filter>
     </ClCompile>
+    <ClCompile Include="triangle.cpp">
+      <Filter>source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="declarations.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="game.h">
       <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="triangle.h">
+      <Filter>header files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +129,9 @@
       <Filter>resources\meshes</Filter>
     </Object>
     <Object Include="resources\meshes\triangle.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
+    <Object Include="resources\meshes\square.obj">
       <Filter>resources\meshes</Filter>
     </Object>
   </ItemGroup>

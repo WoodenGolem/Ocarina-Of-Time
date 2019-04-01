@@ -35,20 +35,5 @@ struct BoundingBox {
 	}
 };
 
-struct Plane {
-	glm::vec3 pos;
-	glm::vec3 normal;
-
-	GLdouble distance(glm::vec3 point)
-	{
-		return glm::dot(this->normal, point) + glm::dot(-this->normal, this->pos);
-	}
-
-	GLvoid transform(glm::mat4 matrix)
-	{
-		this->pos = glm::vec4(this->pos, 1.0f) * matrix;
-	}
-};
-
 #endif // !DECLARATIONS_H
 

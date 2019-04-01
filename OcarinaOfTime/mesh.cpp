@@ -188,10 +188,12 @@ GLboolean Mesh::loadMesh(
 	return GL_TRUE;
 }
 
-Plane Mesh::get_plane(GLuint index)
+Triangle Mesh::get_triangle(GLuint index)
 {
-	Plane plane = { this->vertices[index * 3], this->normals[index * 3] };
-	return plane;
+	return Triangle(this->vertices[index * 3],
+					this->vertices[index * 3 + 1],
+					this->vertices[index * 3 + 2],
+					this->normals[index * 3]);
 }
 GLuint Mesh::get_vertex_count() 
 {
