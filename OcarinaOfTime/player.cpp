@@ -14,6 +14,7 @@ Player::Player(Texture* texture, Mesh* mesh)
 
 bool Player::broadCollisionTest(Entity* entity)
 {
+	// EXPERIMENTAL
 	BoundingBox playerBox = this->calcBoundingBox();
 	BoundingBox entityBox = entity->calcBoundingBox();
 
@@ -39,6 +40,7 @@ bool Player::broadCollisionTest(Entity* entity)
 }
 bool Player::nearCollisionTest(Entity* entity, GLfloat deltaTime)
 {
+	// HIGHLY EXPERIMENTAL
 	static GLfloat lastTime = GLfloat(glfwGetTime());
 	GLfloat currentTime = GLfloat(glfwGetTime());
 	GLfloat dTime = currentTime - lastTime;
