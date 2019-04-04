@@ -104,10 +104,6 @@ GLvoid Entity::applyForce(glm::vec3 force)
 {
 	this->forces.push_back(force);
 }
-GLvoid Entity::removeForce()
-{
-	this->forces.pop_back();
-}
 GLvoid Entity::update()
 {
 	// Sum up applied forces
@@ -116,11 +112,13 @@ GLvoid Entity::update()
 		force += this->forces[i];
 	}
 
+	// Add acceleration to velocity vector
 	if (this->forces.size() > 0)
 	{
 		this->velocity += force / this->mass;
 	}
 
+	// Reducing velocity each frame if no forces were applied
 	if (glm::length(force) == 0)
 	{
 		this->velocity *= 0.93f;
@@ -130,19 +128,28 @@ GLvoid Entity::update()
 		}
 	}
 
-	if (glm::length(velocity) > 5)
-	{
-		this->velocity = glm::normalize(this->velocity) * 5.0f;
+	// Limit velocity to 5 units/second for each direction
+	if (abs(this->velocity.x) > 5){
+		this->velocity.x = (this->velocity.x / abs(this->velocity.x)) * 5;
+	}
+	if (abs(this->velocity.y) > 5){
+		this->velocity.y = (this->velocity.y / abs(this->velocity.y)) * 5;
+	}
+	if (abs(this->velocity.z) > 5){
+		this->velocity.z = (this->velocity.z / abs(this->velocity.z)) * 5;
 	}
 
+	// Clear forces vector
 	this->forces.clear();
 }
 GLvoid Entity::move(GLfloat deltaTime)
 {
-	glm::vec3 position(this->translation[3]);
-	this->translate(position + this->velocity * deltaTime);
-
-	this->forces.clear();
+	this->translate(glm::vec3(this->translation[3]) + this->velocity * deltaTime);
+	if (this->translation[3].y < -10) {
+		std::cout << "Respawn!" << std::endl;
+		this->translate(0, 5, 0);
+	}
+	this->update();
 }
 
 GLvoid Entity::stop()

@@ -55,37 +55,32 @@ GLvoid EntityManager::update(GLuint shader_program, Camera* camera)
 	GLfloat currentTime = glfwGetTime();
 	GLfloat deltaTime = currentTime - lastTime;
 
-
+	// --- PROCESSING FORCES ---
+	// Player movements
 	computeInputs(this->player);
+	// Gravity
+	this->player->applyForce({ 0, -2, 0 });
+	// Calculate current velocity + clear applied forces
 	this->player->update();
+
+	// --- COLLISION DETECTION ---
 	if (this->player->nearCollisionTest(this->entities[0], deltaTime) )
 	{
+		// Stop if collision will happen
 		std::cout << "INFO: Collision detected!" << std::endl;
 		this->player->stop();
 	}
 	else
 	{
+		// Move if no collision occurs
 		this->player->move(deltaTime);
-		
-		player->applyForce({ 0, -2, 0 });
-		this->player->update();
-		if (this->player->nearCollisionTest(this->entities[0], deltaTime))
-		{
-			this->player->stop();
-		}
-		else
-		{
-			this->player->move(deltaTime);
-		}
 	}
-	
 
-	
-
-	//this->player->debug();
+	// --- RENDERING ---
+	// Render the Player
 	this->player->draw(shader_program, camera);
 
-
+	// Render the plane
 	entities[0]->scale(10, 10, 10);
 	entities[0]->draw(shader_program, camera);
 

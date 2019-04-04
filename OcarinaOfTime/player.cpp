@@ -40,53 +40,6 @@ bool Player::broadCollisionTest(Entity* entity)
 }
 bool Player::nearCollisionTest(Entity* entity, GLfloat deltaTime)
 {
-	// HIGHLY EXPERIMENTAL
-	static GLfloat lastTime = GLfloat(glfwGetTime());
-	GLfloat currentTime = GLfloat(glfwGetTime());
-	GLfloat dTime = currentTime - lastTime;
-
-	if (this->get_position().y < -15) {
-		std::cout << "Respawn!" << std::endl;
-		this->translate(0, 5, 0);
-	}
-
-	glm::mat3 eSpace = { {1 / this->ellipsoid.x, 0,0}, {0,1 / this->ellipsoid.y, 0}, {0,0,1 / this->ellipsoid.z} };
-
-	//if (dTime > 1)
-		for (int i = 0; i < entity->get_mesh()->get_vertex_count() / 3; i++)
-		{
-			Triangle triangle = entity->get_mesh()->get_triangle(i);
-			// TODO: Static meshes should have the modelMatrix already applied for better performance
-
-			// Transform Ellipsoid to eSpace
-			triangle.transform(entity->modelMatrix());
-			triangle.transform(eSpace);
-
-			glm::vec3 v = this->velocity * deltaTime;
-			v = v * eSpace;
-			GLfloat t0, t1 = 0;
-			if (v != glm::vec3({ 0,0,0 })) 
-			{
-				t0 = (1 - triangle.distance(this->get_position())) / (glm::dot(triangle.get_normal(), v)) * deltaTime;
-				t1 = (-1 - triangle.distance(this->get_position())) / (glm::dot(triangle.get_normal(), v)) * deltaTime;
-			}
-			else
-			{
-				return false;
-			}
-
-			if ((t0 < deltaTime*2 && t0 >= 0) || (t1 < deltaTime*2 && t1 >= 0))
-			{
-				if (triangle.PointInTriangle(this->get_position() + v))
-				{
-					return true;
-				}
-			}
-
-			//std::cout << std::endl;
-			lastTime = currentTime;
-		}
-
 	return false;
 }
 

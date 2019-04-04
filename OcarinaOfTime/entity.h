@@ -31,7 +31,6 @@ public:
 	// Physics
 	BoundingBox calcBoundingBox();
 	GLvoid applyForce(glm::vec3 force);
-	GLvoid removeForce();
 	GLvoid update();
 	GLvoid move(GLfloat deltaTime);
 	GLvoid stop();
@@ -41,7 +40,6 @@ protected:
 	// Rendering
 	Mesh* mesh;
 	Texture* texture;
-
 
 	// Transformation
 	glm::mat4 scaling;
