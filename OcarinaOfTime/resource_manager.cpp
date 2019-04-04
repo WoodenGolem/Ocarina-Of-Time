@@ -28,7 +28,7 @@ GLvoid ResourceManager::loadResources()
 	this->meshes.push_back(new Mesh("resources/meshes/link.obj"));				 // 0
 	this->meshes.push_back(new Mesh("resources/meshes/testmap.obj"));			 // 1
 	this->meshes.push_back(new Mesh("resources/meshes/square.obj"));			 // 2
-	this->meshes.push_back(new Mesh("resources/meshes/2triangles1tilted.obj"));  // 3
+	this->meshes.push_back(new Mesh("resources/meshes/testmap.obj"));  // 3
 
 	// TEXTURES
 	this->textures.push_back(new Texture({ this->loadTexture("resources/textures/link.bmp"),
@@ -40,7 +40,7 @@ GLvoid ResourceManager::loadResources()
 GLuint ResourceManager::shader(GLuint id) {
 	// Returns shader program id 
 	if (id >= this->shader_programs.size() || id < 0) {
-		std::cout << "WARNING: invalid shader ID!" << std::endl;
+		std::cerr << "WARNING: invalid shader ID!" << std::endl;
 		return 0;
 	}
 	else {
@@ -51,7 +51,7 @@ Texture* ResourceManager::texture(GLuint id)
 {
 	// Returns pointer to a texture
 	if (id >= this->textures.size() || id < 0) {
-		std::cout << "WARNING: invalid texture ID!" << std::endl;
+		std::cerr << "WARNING: invalid texture ID!" << std::endl;
 		return 0;
 	}
 	else {
@@ -62,7 +62,7 @@ Mesh* ResourceManager::mesh(GLuint id)
 {
 	// Returns pointer to a mesh
 	if (id >= this->meshes.size() || id < 0) {
-		std::cout << "WARNING: invalid mesh ID!" << std::endl;
+		std::cerr << "WARNING: invalid mesh ID!" << std::endl;
 		return 0;
 	}
 	else {
