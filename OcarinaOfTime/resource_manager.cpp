@@ -25,9 +25,10 @@ GLvoid ResourceManager::loadResources()
 													 "resources/shader/fragment_shader.frag"));
 
 	// MESHES
-	this->meshes.push_back(new Mesh("resources/meshes/link.obj"));	  // 0
-	this->meshes.push_back(new Mesh("resources/meshes/testmap.obj")); // 1
-	this->meshes.push_back(new Mesh("resources/meshes/square.obj"));  // 2
+	this->meshes.push_back(new Mesh("resources/meshes/link.obj"));				 // 0
+	this->meshes.push_back(new Mesh("resources/meshes/testmap.obj"));			 // 1
+	this->meshes.push_back(new Mesh("resources/meshes/square.obj"));			 // 2
+	this->meshes.push_back(new Mesh("resources/meshes/2triangles1tilted.obj"));  // 3
 
 	// TEXTURES
 	this->textures.push_back(new Texture({ this->loadTexture("resources/textures/link.bmp"),

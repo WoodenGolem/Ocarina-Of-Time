@@ -134,5 +134,8 @@
     <Object Include="resources\meshes\square.obj">
       <Filter>resources\meshes</Filter>
     </Object>
+    <Object Include="resources\meshes\2triangles1tilted.obj">
+      <Filter>resources\meshes</Filter>
+    </Object>
   </ItemGroup>
 </Project>

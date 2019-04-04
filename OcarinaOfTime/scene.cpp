@@ -9,7 +9,7 @@ Scene::Scene(GLFWwindow* window)
 	this->resources->loadResources();
 
 	this->entities = new EntityManager(window, this->resources->texture(0), this->resources->mesh(0));
-	this->entities->add(this->resources->texture(1), this->resources->mesh(2));
+	this->entities->add(this->resources->texture(1), this->resources->mesh(3));
 
 	// CAM
 	this->camera = new Camera;
