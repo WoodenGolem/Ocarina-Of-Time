@@ -27,6 +27,9 @@ GLvoid Triangle::transform(glm::mat4 matrix)
 
 GLvoid Triangle::transform(glm::mat3 matrix)
 {
+	this->p1 = this->p1 * matrix;
+	this->p2 = this->p2 * matrix;
+	this->p3 = this->p3 * matrix;
 	this->normal = this->normal * matrix;
 }
 
@@ -34,7 +37,8 @@ GLboolean Triangle::PointInTriangle(glm::vec3 point)
 {
 	if (SameSide(point, this->p1, this->p2, this->p3) &&
 		SameSide(point, this->p2, this->p1, this->p3) &&
-		SameSide(point, this->p3, this->p1, this->p2))
+		SameSide(point, this->p3, this->p1, this->p2) &&
+		glm::dot(point - this->p1, this->normal))
 	{
 		return true;
 	}
