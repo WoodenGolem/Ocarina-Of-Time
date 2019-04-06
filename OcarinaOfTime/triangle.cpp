@@ -15,7 +15,7 @@ Triangle::Triangle(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3, glm::vec3 normal)
 
 GLdouble Triangle::distance(glm::vec3 point)
 {
-	return glm::dot(this->normal, point) + this->preCalculated[0];
+	return glm::dot(this->normal, point) + glm::dot(-this->normal, this->p1);
 }
 
 GLvoid Triangle::transform(glm::mat4 matrix)
@@ -30,15 +30,16 @@ GLvoid Triangle::transform(glm::mat3 matrix)
 	this->p1 = this->p1 * matrix;
 	this->p2 = this->p2 * matrix;
 	this->p3 = this->p3 * matrix;
-	this->normal = this->normal * matrix;
+	//this->normal = this->normal * matrix;
 }
 
 GLboolean Triangle::PointInTriangle(glm::vec3 point)
 {
 	if (SameSide(point, this->p1, this->p2, this->p3) &&
 		SameSide(point, this->p2, this->p1, this->p3) &&
-		SameSide(point, this->p3, this->p1, this->p2) &&
-		glm::dot(point - this->p1, this->normal))
+		SameSide(point, this->p3, this->p1, this->p2) /*&&
+		glm::dot(point - this->p1, this->normal) < 0.01 &&
+		glm::dot(point - this->p1, this->normal) > -0.01*/)
 	{
 		return true;
 	}

@@ -99,7 +99,7 @@ GLvoid Game::loop()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	// Cull faces with normals away from camera
-	//glEnable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
 	
 
 	std::cout << glm::length(glm::vec3(0, 0, 0)) << std::endl;

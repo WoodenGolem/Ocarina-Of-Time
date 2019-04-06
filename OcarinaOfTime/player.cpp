@@ -40,11 +40,13 @@ bool Player::broadCollisionTest(Entity* entity)
 }
 bool Player::nearCollisionTest(Entity* entity, GLfloat deltaTime)
 {
+	// DEBUG
+	static GLfloat lastTime = glfwGetTime();
 
 	glm::mat3 ESpace = { { 1 / this->ellipsoid.x, 0, 0}, { 0, 1 / this->ellipsoid.y, 0 },{ 0, 0, 1 / this->ellipsoid.z } };
 	glm::mat3 invESpace = { {this->ellipsoid.x, 0, 0}, {0, this->ellipsoid.y, 0},{0, 0, this->ellipsoid.z} };
 	glm::vec3 v;
-	glm::vec3 pos = this->get_position() / this->ellipsoid;
+	glm::vec3 pos = this->get_position() * ESpace;
 	glm::vec3 intersect;
 
 	for (int i = 0; i < entity->get_mesh()->get_vertex_count() / 3; i++)
@@ -52,6 +54,33 @@ bool Player::nearCollisionTest(Entity* entity, GLfloat deltaTime)
 		Triangle triangle = entity->get_mesh()->get_triangle(i);
 		triangle.transform(entity->modelMatrix());
 		triangle.transform(ESpace);
+
+		v = this->velocity * deltaTime;
+		v = v * ESpace;
+
+		intersect = pos - triangle.get_normal();
+
+		GLfloat t0 = (1 - triangle.distance(pos)) / glm::dot(triangle.get_normal(), v);
+
+		// DEBUG
+		if (glfwGetTime() - lastTime >= 10)
+		{
+			intersect += (v * t0);
+			std::cout << v.x << " " << v.y << " " << v.z << std::endl;
+			std::cout << intersect.x << " " << intersect.y << " " << intersect.z << std::endl;
+			std::cout << t0 << std::endl;
+
+			lastTime = glfwGetTime();
+		}
+
+		if (t0 < 1 && t0 > 0)
+		{
+			if (triangle.PointInTriangle(intersect + v * t0))
+			{
+				// Project the velocity vector onto the plane the player is colliding with
+				this->velocity = this->velocity - glm::dot(this->velocity, triangle.get_normal()) * triangle.get_normal();
+			}
+		}
 	}
 	
 	return false;
