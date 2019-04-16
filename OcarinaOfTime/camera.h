@@ -26,7 +26,7 @@ private:
 
 	GLfloat horizontalAngle = 90.0f;
 	GLfloat verticalAngle = 0.0f;
-	GLfloat speed = 7.5f; // units / second
+	GLfloat speed = 5.0f; // units / second
 	GLfloat mouseSpeed = 0.005f;
 };
 
