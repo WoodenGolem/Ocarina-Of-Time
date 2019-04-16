@@ -90,7 +90,7 @@ GLuint ResourceManager::loadShader(std::string vertex_file_path, std::string fra
 	}
 	else
 	{
-		printf("Impossible to open %s. Are you in the right directory?\n", vertex_file_path);
+		printf("Impossible to open %s. Are you in the right directory?\n", vertex_file_path.c_str());
 		getchar();
 		return 0;
 	}
@@ -107,7 +107,7 @@ GLuint ResourceManager::loadShader(std::string vertex_file_path, std::string fra
 	}
 	else
 	{
-		printf("Impossible to open %s. Are you in the right directory?\n", vertex_file_path);
+		printf("Impossible to open %s. Are you in the right directory?\n", vertex_file_path.c_str());
 		getchar();
 		return 0;
 	}

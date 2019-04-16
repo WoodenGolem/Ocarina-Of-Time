@@ -41,7 +41,7 @@ bool Player::broadCollisionTest(Entity* entity)
 bool Player::nearCollisionTest(Entity* entity, GLfloat deltaTime)
 {
 	// DEBUG
-	static GLfloat lastTime = glfwGetTime();
+	static GLdouble lastTime = glfwGetTime();
 
 	glm::mat3 ESpace = { { 1 / this->ellipsoid.x, 0, 0}, { 0, 1 / this->ellipsoid.y, 0 },{ 0, 0, 1 / this->ellipsoid.z } };
 	glm::mat3 invESpace = { {this->ellipsoid.x, 0, 0}, {0, this->ellipsoid.y, 0},{0, 0, this->ellipsoid.z} };
@@ -49,7 +49,7 @@ bool Player::nearCollisionTest(Entity* entity, GLfloat deltaTime)
 	glm::vec3 pos = this->get_position() * ESpace;
 	glm::vec3 intersect;
 
-	for (int i = 0; i < entity->get_mesh()->get_vertex_count() / 3; i++)
+	for (unsigned int i = 0; i < entity->get_mesh()->get_vertex_count() / 3; i++)
 	{
 		Triangle triangle = entity->get_mesh()->get_triangle(i);
 		triangle.transform(entity->modelMatrix());
@@ -60,7 +60,7 @@ bool Player::nearCollisionTest(Entity* entity, GLfloat deltaTime)
 
 		intersect = pos - triangle.get_normal();
 
-		GLfloat t0 = (1 - triangle.distance(pos)) / glm::dot(triangle.get_normal(), v);
+		GLfloat t0 = GLfloat((1 - triangle.distance(pos)) / glm::dot(triangle.get_normal(), v));
 
 		// DEBUG
 		if (glfwGetTime() - lastTime >= 10)

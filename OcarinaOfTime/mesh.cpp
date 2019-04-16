@@ -197,5 +197,5 @@ Triangle Mesh::get_triangle(GLuint index)
 }
 GLuint Mesh::get_vertex_count() 
 {
-	return this->vertices.size();
+	return GLuint(this->vertices.size());
 }

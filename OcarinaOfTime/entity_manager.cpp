@@ -51,9 +51,9 @@ GLvoid EntityManager::computeInputs(Player* player)
 // Update cycle
 GLvoid EntityManager::update(GLuint shader_program, Camera* camera)
 {
-	static GLfloat lastTime = glfwGetTime();
-	GLfloat currentTime = glfwGetTime();
-	GLfloat deltaTime = currentTime - lastTime;
+	static GLdouble lastTime = glfwGetTime();
+	GLdouble currentTime = glfwGetTime();
+	GLfloat deltaTime = GLfloat(currentTime - lastTime);
 
 	// --- PROCESSING FORCES ---
 	// Player movements
